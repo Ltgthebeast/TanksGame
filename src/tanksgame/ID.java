@@ -9,15 +9,8 @@ package tanksgame;
  *
  * @author LGarceau
  */
-public class TanksGame {
+public enum ID {
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
-    public final String name = "Tanks";
+    Tank, Enemy, Bullet, Wall,
     
 }
