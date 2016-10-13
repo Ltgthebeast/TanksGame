@@ -18,4 +18,6 @@ public class TanksGame {
         // TODO code application logic here
     }
     
+    public final String name = "Tanks";
+    
 }
