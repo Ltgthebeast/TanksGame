@@ -9,6 +9,8 @@ import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.util.LinkedList;
 
 /**
  *
@@ -16,20 +18,28 @@ import java.awt.Color;
  */
 public class MainGame extends Canvas implements Runnable{
     
+    // vairables
     public static final int WIDTH = 900, HEIGHT = 600;
     public static final String TITLE = "Tanks";
     private Thread thread;
     public boolean running = false;
     
+    // classes
+    public static Handler handler;
+    
     public MainGame(){
-        new Frame(WIDTH, HEIGHT, TITLE, this);
+        Frame frame = new Frame(WIDTH, HEIGHT, TITLE, this);
+        
+        this.handler = new Handler();
     }
+    
+    
     
     // starting the game
     public synchronized void start(){
         this.thread = new Thread(this);
         this.thread.start();
-        this.running = false;
+        this.running = true;
     }
     
     // stopping the game
@@ -46,32 +56,32 @@ public class MainGame extends Canvas implements Runnable{
    @Override
    public void run() {
         requestFocus();
-        long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0D;
-        double ns = 1.0E9D / amountOfTicks;
-        double delta = 0.0D;
-        long timer = System.currentTimeMillis();
-        int frames = 0;
-        while(this.running){
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-            while(delta >= 1.0D){
-                tick();
-                delta -= 1.0D;
-            }
-            if(this.running){
-                render();
-            }
-            frames++;
-            System.out.println("Frames: "+frames);
-            
-            if(System.currentTimeMillis() - timer > 1000L){
-                timer += 1000l;
-                frames = 0;
-            }
-        }
-        stop();
+	long lastTime = System.nanoTime();
+	double amountOfTicks = 60.0D;
+	double ns = 1.0E9D / amountOfTicks;
+	double delta = 0.0D;
+	long timer = System.currentTimeMillis();
+	int frames = 0;
+	while (this.running) {
+	    long now = System.nanoTime();
+	    delta += (now - lastTime) / ns;
+	    lastTime = now;
+	    while (delta >= 1.0D) {
+		tick();
+		delta -= 1.0D;
+	    }
+	    if (this.running)
+		render();
+	    frames++;
+	    System.out.println("Frames: "+frames);
+
+	    if (System.currentTimeMillis() - timer > 1000L) {
+		timer += 1000L;
+
+		frames = 0;
+	    }
+	}
+	stop();
     }
     
     private void tick(){
@@ -88,8 +98,9 @@ public class MainGame extends Canvas implements Runnable{
         
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
         
+        
         // draw background
-        g.setColor(new Color(245, 245, 220));
+        g.setColor(new Color(245,245,220)); // beige
         g.fillRect(0, 0, WIDTH, HEIGHT);
         
         // render all gameobjects
@@ -102,5 +113,4 @@ public class MainGame extends Canvas implements Runnable{
         new MainGame();
     }
 
-    
 }
