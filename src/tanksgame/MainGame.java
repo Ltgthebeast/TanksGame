@@ -25,12 +25,12 @@ public class MainGame extends Canvas implements Runnable{
     public boolean running = false;
     
     // classes
-    public static Handler handler;
+   // public static Handler handler;
     
     public MainGame(){
         Frame frame = new Frame(WIDTH, HEIGHT, TITLE, this);
         
-        this.handler = new Handler();
+       // this.handler = new Handler();
     }
     
     
@@ -73,7 +73,7 @@ public class MainGame extends Canvas implements Runnable{
 	    if (this.running)
 		render();
 	    frames++;
-	    System.out.println("Frames: "+frames);
+	    //System.out.println("Frames: "+frames);
 
 	    if (System.currentTimeMillis() - timer > 1000L) {
 		timer += 1000L;
@@ -100,7 +100,7 @@ public class MainGame extends Canvas implements Runnable{
         
         
         // draw background
-        g.setColor(new Color(245,245,220)); // beige
+        g.setColor(new Color(210,180,140)); // beige
         g.fillRect(0, 0, WIDTH, HEIGHT);
         
         // render all gameobjects
