@@ -12,6 +12,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
+import tanksgame.Input.Mouse;
 
 /**
  *
@@ -25,8 +26,13 @@ public class MainGame extends Canvas implements Runnable{
     private Thread thread;
     public boolean running = false;
     
+    // Mouse Variables
+    public static double mouseX = 0, mouseY = 0;
+    public static boolean mouse1Down = false, mouse2Down = false;
+    
     // classes
    // public static Handler handler;
+    public static Mouse mouse = new Mouse();
     
     public MainGame(){
         Frame frame = new Frame(WIDTH, HEIGHT, TITLE, this);
