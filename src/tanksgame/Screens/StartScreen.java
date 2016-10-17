@@ -3,14 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tanksgame;
+package tanksgame.Screens;
+
+import java.awt.Graphics2D;
 
 /**
  *
  * @author LGarceau
  */
-public enum ID {
+public class StartScreen {
     
-    Tank, Enemy, Bullet, Wall,
+    
+    
+    public void render(Graphics2D g){
+        
+        
+        
+    }
     
 }
