@@ -31,13 +31,13 @@ public class MainGame extends Canvas implements Runnable{
     public static boolean mouse1Down = false, mouse2Down = false;
     
     // classes
-   // public static Handler handler;
+    public static Handler handler;
     public static Mouse mouse = new Mouse();
     
     public MainGame(){
         Frame frame = new Frame(WIDTH, HEIGHT, TITLE, this);
         
-       // this.handler = new Handler();
+        this.handler = new Handler();
     }
     
     
@@ -93,6 +93,7 @@ public class MainGame extends Canvas implements Runnable{
     
     private void tick(){
         // tick all of the game objects
+        handler.tick();
     }
     
     private void render(){
@@ -111,7 +112,7 @@ public class MainGame extends Canvas implements Runnable{
         g.fillRect(0, 0, WIDTH, HEIGHT);
         
         // render all gameobjects
-        
+        handler.render(g);
         g.dispose();
         bs.show();
     }
