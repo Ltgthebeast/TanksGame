@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
 import tanksgame.Input.Mouse;
+import tanksgame.Objects.Button;
 
 /**
  *
@@ -38,6 +39,9 @@ public class MainGame extends Canvas implements Runnable{
         Frame frame = new Frame(WIDTH, HEIGHT, TITLE, this);
         
         this.handler = new Handler();
+        
+        // add object
+        handler.add(new Button())
     }
     
     

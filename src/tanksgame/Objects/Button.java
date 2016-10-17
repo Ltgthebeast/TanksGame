@@ -15,6 +15,8 @@ import tanksgame.Engine.MainGame;
  */
 public class Button extends GameObject{
 
+    public Button(int x, int y, int velX, int velY, )
+    
     @Override
     public void render(Graphics g) {
        

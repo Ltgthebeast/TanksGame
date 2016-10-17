@@ -14,6 +14,11 @@ import java.awt.Image;
  */
 public abstract class GameObject {
     
+    public GameObject(int x, int y, int velX, int velY, ID id, Image image){
+       
+        
+    }
+    
     public abstract void render(Graphics g);
     public abstract void tick();
     
