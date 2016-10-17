@@ -8,6 +8,7 @@ package tanksgame.Window;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import tanksgame.Engine.MainGame;
+import static tanksgame.Engine.MainGame.mouse;
 
 /**
  *
@@ -26,6 +27,8 @@ public class Frame extends JFrame{
         frame.add(game);
         frame.setVisible(true);
         game.start();
+        frame.addMouseListener(mouse);
+        frame.addMouseMotionListener(mouse);
     }
     
 }
