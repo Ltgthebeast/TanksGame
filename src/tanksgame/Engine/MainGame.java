@@ -14,6 +14,7 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
+import tanksgame.Objects.ID;
 
 /**
  *
@@ -41,7 +42,7 @@ public class MainGame extends Canvas implements Runnable{
         this.handler = new Handler();
         
         // add object
-        handler.add(new Button())
+        handler.add(new Button(0, 0, 0, 0, ID.Button, null));
     }
     
     

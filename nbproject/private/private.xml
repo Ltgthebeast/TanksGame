@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/GameObject.java</file>
-            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/ID.java</file>
-            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/TanksGame.java</file>
-            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Frame.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Engine/Handler.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/ID.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Window/Frame.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Screens/StartScreen.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Input/Mouse.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/Button.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/GameObject.java</file>
+            <file>file:/C:/Users/lgarceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Engine/MainGame.java</file>
         </group>
     </open-files>
 </project-private>

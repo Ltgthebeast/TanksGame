@@ -6,6 +6,7 @@
 package tanksgame.Objects;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import tanksgame.Engine.MainGame;
 
@@ -15,7 +16,9 @@ import tanksgame.Engine.MainGame;
  */
 public class Button extends GameObject{
 
-    public Button(int x, int y, int velX, int velY, )
+    public Button(int x, int y, int velX, int velY, ID id, Image image) {
+        super(x, y, velX, velY, id, image);
+    }   
     
     @Override
     public void render(Graphics g) {
