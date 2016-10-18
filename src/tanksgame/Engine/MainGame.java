@@ -107,11 +107,14 @@ public class MainGame extends Canvas implements Runnable{
     private void tick(){
         // tick all of the game objects
         handler.tick();
+        mouseX = MouseInfo.getPointerInfo().getLocation().x;
+        mouseY = MouseInfo.getPointerInfo().getLocation().y;  
+        Point point = new Point(mouseX, mouseY),
+                newPoint;
+        SwingUtilities.convertPoint(GraphicsConfiguration., point, newPoint)
+         
         
-        int mX = frame.frame.getX() - MouseInfo.getPointerInfo().getLocation().y,
-                mY = frame.frame.getY() - MouseInfo.getPointerInfo().getLocation().x;   
-        
-      //  System.out.println("Mouse x: "+mX+" Mouse y: "+mY);
+//        System.out.println("Mouse x: "+mouseX+" Mouse y: "+mouseY);
                
     }
     

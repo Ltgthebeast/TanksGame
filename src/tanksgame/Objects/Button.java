@@ -30,12 +30,20 @@ public class Button extends GameObject{
     
     @Override
     public void render(Graphics2D g) {
-       // need to convert all of them with 0 at the origin 
        // draw the rectangle but have a hover over function
+       boolean withinX = MainGame.funct.withInRange(MainGame.mouseX, x, x+width),
+               withinY = MainGame.funct.withInRange(MainGame.mouseY, y, y+height);
        
-       g.setColor(c);
+       System.out.println("Within x|"+withinX);
+       System.out.println("Within y|"+withinY);
+       if(withinX && withinY){
+           // hovering over button
+           g.setColor(new Color(c.getRed()/2, c.getGreen()/2, c.getBlue()/2));
+       }else{
+           g.setColor(c);
+       }
        g.fillRect(x, y, width, height);
-       System.out.println(x+"|"+y);
+       
     }
 
     @Override
