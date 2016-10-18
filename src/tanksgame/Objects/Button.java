@@ -27,9 +27,7 @@ public class Button extends GameObject{
 
     @Override
     public void tick() {
-        MainGame.mouseY = MouseInfo.getPointerInfo().getLocation().y;
-        MainGame.mouseX = MouseInfo.getPointerInfo().getLocation().x;         
-        System.out.println("Mouse x: "+MainGame.mouseX+" Mouse y: "+MainGame.mouseY+" Button 1: "+MainGame.mouse1Down+" Button 2: "+MainGame.mouse2Down);
+        
     }
     
 }

@@ -10,8 +10,13 @@ import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.util.LinkedList;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import javafx.embed.swing.SwingFXUtils;
+import javax.swing.SwingUtilities;
 import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
 import tanksgame.Objects.ID;
@@ -35,9 +40,11 @@ public class MainGame extends Canvas implements Runnable{
     // classes
     public static Handler handler;
     public static Mouse mouse = new Mouse();
+    public static UseFulFunctions funct = new UseFulFunctions();
+    public Frame frame;
     
     public MainGame(){
-        Frame frame = new Frame(WIDTH, HEIGHT, TITLE, this);
+        frame = new Frame(WIDTH, HEIGHT, TITLE, this);
         
         this.handler = new Handler();
         
@@ -99,6 +106,12 @@ public class MainGame extends Canvas implements Runnable{
     private void tick(){
         // tick all of the game objects
         handler.tick();
+        
+        int mX = frame.frame.getX() - MouseInfo.getPointerInfo().getLocation().y,
+                mY = frame.frame.getY() - MouseInfo.getPointerInfo().getLocation().x;   
+        
+        System.out.println("Mouse x: "+mX+" Mouse y: "+mY);
+               
     }
     
     private void render(){
