@@ -31,7 +31,8 @@ public class MainGame extends Canvas implements Runnable{
     public static final int WIDTH = 900, HEIGHT = 600;
     public static final String TITLE = "Tanks";
     private Thread thread;
-    public boolean running = false;
+    public boolean running = false,
+            first = true;
     
     // Mouse Variables
     public static double mouseX = 0, mouseY = 0;
@@ -48,8 +49,8 @@ public class MainGame extends Canvas implements Runnable{
         
         this.handler = new Handler();
         
-        // add object
-        handler.add(new Button(0, 0, 0, 0, ID.Button, null));
+        // add Start Button
+        handler.add(new Button(0, 0, 50, 50, ID.Button, null, Color.blue));
     }
     
     
@@ -110,12 +111,13 @@ public class MainGame extends Canvas implements Runnable{
         int mX = frame.frame.getX() - MouseInfo.getPointerInfo().getLocation().y,
                 mY = frame.frame.getY() - MouseInfo.getPointerInfo().getLocation().x;   
         
-        System.out.println("Mouse x: "+mX+" Mouse y: "+mY);
+      //  System.out.println("Mouse x: "+mX+" Mouse y: "+mY);
                
     }
     
     private void render(){
         // render all of the game objects
+        
         BufferStrategy bs =  getBufferStrategy();
         if(bs == null){
             createBufferStrategy(3);
@@ -124,10 +126,13 @@ public class MainGame extends Canvas implements Runnable{
         
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
         
+        g.translate(WIDTH/2, HEIGHT/2);
+        
         
         // draw background
+        
         g.setColor(new Color(210,180,140)); // beige
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT);
         
         // render all gameobjects
         handler.render(g);
