@@ -17,7 +17,7 @@ public abstract class GameObject {
     
     public GameObject(int x, int y, int velX, int velY, ID id, Image image){
        this.x = x;
-       this.y = y;
+       this.y = -y;
        this.velX = velX;
        this.velY = velY;
        this.id = id;

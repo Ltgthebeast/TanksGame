@@ -22,9 +22,9 @@ public class UseFulFunctions {
     }
     
     public boolean withInRange(double input, double realLow, double realHigh){
-        System.out.println("input|"+input);
-        System.out.println("realLow|"+realLow);
-        System.out.println("realHigh|"+realHigh);
+//        System.out.println("input|"+input);
+//        System.out.println("realLow|"+realLow);
+//        System.out.println("realHigh|"+realHigh);
         if(input > realLow && input < realHigh) return true;
         return false;
     }

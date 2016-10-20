@@ -44,13 +44,18 @@ public class MainGame extends Canvas implements Runnable{
     public static UseFulFunctions funct = new UseFulFunctions();
     public Frame frame;
     
+    // Buttons
+    public static Button start = new Button(0, 0, 50, 50, ID.Button, null, Color.blue, "Start"),
+            exit = new Button(60, 60, 50, 50, ID.Button, null, Color.green, "Exit");
+    
     public MainGame(){
         frame = new Frame(WIDTH, HEIGHT, TITLE, this);
         
         this.handler = new Handler();
         
         // add Start Button
-        handler.add(new Button(0, 0, 50, 50, ID.Button, null, Color.blue));
+        handler.add(start);
+        handler.add(exit);
     }
     
     
@@ -109,11 +114,16 @@ public class MainGame extends Canvas implements Runnable{
         handler.tick();
         mouseX = MouseInfo.getPointerInfo().getLocation().x;
         mouseY = MouseInfo.getPointerInfo().getLocation().y;  
-        Point point = new Point(mouseX, mouseY),
-                newPoint;
-        SwingUtilities.convertPoint(GraphicsConfiguration., point, newPoint)
-         
+        // need to convert point to an origin at 0,0
         
+        // get resolution
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth(),
+                height = gd.getDisplayMode().getHeight();
+        mouseX = funct.map(mouseX, 0, width, -width/2, width/2);
+        mouseY = funct.map(mouseY, 0, height, -height/2, height/2);
+
+
 //        System.out.println("Mouse x: "+mouseX+" Mouse y: "+mouseY);
                
     }
