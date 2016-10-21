@@ -8,6 +8,7 @@ package tanksgame.Objects;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -15,9 +16,9 @@ import java.awt.Image;
  */
 public abstract class GameObject {
     
-    public GameObject(int x, int y, int velX, int velY, ID id, Image image){
+    public GameObject(int x, int y, int velX, int velY, ID id, ImageIcon image){
        this.x = x;
-       this.y = -y;
+       this.y = y;
        this.velX = velX;
        this.velY = velY;
        this.id = id;
@@ -29,7 +30,7 @@ public abstract class GameObject {
     
     protected int x, y, velX, velY;
     protected ID id;
-    protected Image image;
+    protected ImageIcon image;
     
     public ID getID(){
         return id;
@@ -51,7 +52,7 @@ public abstract class GameObject {
         return velY;
     }
 
-    public Image getImage() {
+    public ImageIcon getImage() {
         return image;
     }
 
@@ -75,7 +76,7 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public void setImage(Image image) {
+    public void setImage(ImageIcon image) {
         this.image = image;
     }
     

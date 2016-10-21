@@ -11,6 +11,6 @@ package tanksgame.Objects;
  */
 public enum ID {
     
-    Tank, Enemy, Bullet, Wall, Button
+    Tank, Enemy, Bullet, Wall, Button, Image
     
 }

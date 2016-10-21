@@ -5,20 +5,19 @@
  */
 package tanksgame.Window;
 
+import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import tanksgame.Engine.MainGame;
-import static tanksgame.Engine.MainGame.mouse;
 
 /**
  *
  * @author LGarceau
  */
-public class Frame extends JFrame{
-    public JFrame frame;
+public class Frame extends Canvas{
     
     public Frame(int width, int height, String title, MainGame game){
-        frame = new JFrame(title);
+        JFrame frame = new JFrame(title);
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(width, height));
@@ -27,9 +26,8 @@ public class Frame extends JFrame{
         frame.setLocationRelativeTo(null);
         frame.add(game);
         frame.setVisible(true);
+        frame.setFocusable(true);
         game.start();
-        frame.addMouseListener(mouse);
-        frame.addMouseMotionListener(mouse);
     }
     
 }

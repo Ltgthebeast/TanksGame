@@ -17,6 +17,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import javafx.embed.swing.SwingFXUtils;
 import javax.swing.SwingUtilities;
+import tanksgame.Input.Keyboard;
 import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
 import tanksgame.Objects.ID;
@@ -40,18 +41,23 @@ public class MainGame extends Canvas implements Runnable{
     
     // classes
     public static Handler handler;
-    public static Mouse mouse = new Mouse();
     public static UseFulFunctions funct = new UseFulFunctions();
     public Frame frame;
     
     // Buttons
-    public static Button start = new Button(0, 0, 50, 50, ID.Button, null, Color.blue, "Start"),
-            exit = new Button(60, 60, 50, 50, ID.Button, null, Color.green, "Exit");
+    public static Button start = new Button(-360, -240, 300, 50, ID.Button, null, Color.blue, "Start"),
+            exit = new Button(-360, -180, 300, 50, ID.Button, null, Color.green, "Exit");
+    
+    // Images
+    public static Image tankOnStart = new Image(300, 300, 300, 300, ID.Image);
     
     public MainGame(){
         frame = new Frame(WIDTH, HEIGHT, TITLE, this);
-        
         this.handler = new Handler();
+        addMouseListener(new Mouse());
+        addKeyListener(new Keyboard(handler));
+        
+        
         
         // add Start Button
         handler.add(start);

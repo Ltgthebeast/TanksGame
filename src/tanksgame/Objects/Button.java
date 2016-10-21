@@ -6,11 +6,13 @@
 package tanksgame.Objects;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Rectangle;
+import javax.swing.ImageIcon;
 import tanksgame.Engine.MainGame;
 
 /**
@@ -23,8 +25,8 @@ public class Button extends GameObject{
     public String text;
     public Color c;
     
-    public Button(int x, int y, int width, int height, ID id, Image image, Color c, String text) {
-        super(x-width, y-height, 0, 0, id, image);
+    public Button(int x, int y, int width, int height, ID id, ImageIcon image, Color c, String text) {
+        super(x, y, 0, 0, id, image);
         this.width = width;
         this.height = height;
         this.c = c;
@@ -44,15 +46,18 @@ public class Button extends GameObject{
        }
        g.fillRect(x, y, width, height);
        g.setColor(Color.BLACK);
-       
-       g.drawString(text, x+(width/4), y+(height/2));
+       Font org = g.getFont();
+       g.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+       g.drawString(text, x+(width/2)-(text.length()*4), y+(height/2));
+       g.setFont(org);
        
     }
 
     @Override
     public void tick() {
-        System.out.println(x);
-        System.out.println(y);
+        System.out.println("x|"+x);
+        System.out.println("y|"+y);
+        System.out.println("------");
         x+=velX;
         y+=velY;
     }
