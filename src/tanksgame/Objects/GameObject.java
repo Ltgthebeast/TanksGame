@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  */
 public abstract class GameObject {
     
-    public GameObject(int x, int y, int velX, int velY, ID id, ImageIcon image){
+    public GameObject(int x, int y, int velX, int velY, ID id, String image){
        this.x = x;
        this.y = y;
        this.velX = velX;
@@ -30,7 +30,7 @@ public abstract class GameObject {
     
     protected int x, y, velX, velY;
     protected ID id;
-    protected ImageIcon image;
+    protected String image;
     
     public ID getID(){
         return id;
@@ -52,7 +52,7 @@ public abstract class GameObject {
         return velY;
     }
 
-    public ImageIcon getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -76,7 +76,7 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public void setImage(ImageIcon image) {
+    public void setImage(String image) {
         this.image = image;
     }
     

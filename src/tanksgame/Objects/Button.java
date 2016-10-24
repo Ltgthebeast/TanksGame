@@ -26,7 +26,7 @@ public class Button extends GameObject{
     public Color c;
     
     public Button(int x, int y, int width, int height, ID id, ImageIcon image, Color c, String text) {
-        super(x, y, 0, 0, id, image);
+        super(x, y+height, 0, 0, id, text);
         this.width = width;
         this.height = height;
         this.c = c;
@@ -55,9 +55,9 @@ public class Button extends GameObject{
 
     @Override
     public void tick() {
-        System.out.println("x|"+x);
-        System.out.println("y|"+y);
-        System.out.println("------");
+//        System.out.println("x|"+x);
+//        System.out.println("y|"+y);
+//        System.out.println("------");
         x+=velX;
         y+=velY;
     }
