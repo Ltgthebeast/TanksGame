@@ -5,6 +5,10 @@
  */
 package tanksgame.Engine;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author LGarceau
@@ -27,5 +31,16 @@ public class UseFulFunctions {
 //        System.out.println("realHigh|"+realHigh);
         if(input > realLow && input < realHigh) return true;
         return false;
+    }
+    
+    public BufferedImage getImageFromName(String path){
+        BufferedImage img = null;
+        try{
+            img = ImageIO.read(this.getClass().getResource("/Images/"+path));
+            
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return img;
     }
 }

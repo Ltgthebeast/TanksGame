@@ -5,14 +5,18 @@
  */
 package tanksgame.Objects;
 
+import com.sun.java.accessibility.util.AWTEventMonitor;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.MouseInfo;
+import java.awt.PointerInfo;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 import tanksgame.Engine.MainGame;
 
 /**
@@ -55,9 +59,32 @@ public class Button extends GameObject{
 
     @Override
     public void tick() {
-//        System.out.println("x|"+x);
-//        System.out.println("y|"+y);
-//        System.out.println("------");
+        boolean within = new Rectangle(x, y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
+        if(within){
+            if(MainGame.mouseButton == 1){
+                switch (text){
+                    
+                    case "Start":
+                        // move to controls screen
+                        MainGame.controlScreen.Controls();
+                        break;
+                    
+                    case "Exit":
+                        System.exit(3);
+                        break;
+                     
+                    case "Play!":
+                        // move to actual game
+                        MainGame.controlScreen.Game();
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+        }
+        
+        
         x+=velX;
         y+=velY;
     }

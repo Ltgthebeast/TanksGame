@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  */
 public abstract class GameObject {
     
-    public GameObject(int x, int y, int velX, int velY, ID id, String image){
+    public GameObject(int x, int y, double velX, double velY, ID id, String image){
        this.x = x;
        this.y = y;
        this.velX = velX;
@@ -28,7 +28,8 @@ public abstract class GameObject {
     public abstract void render(Graphics2D g);
     public abstract void tick();
     
-    protected int x, y, velX, velY;
+    protected int x, y;
+    protected double velX, velY;
     protected ID id;
     protected String image;
     
@@ -44,11 +45,11 @@ public abstract class GameObject {
         return y;
     }
 
-    public int getVelX() {
+    public double getVelX() {
         return velX;
     }
 
-    public int getVelY() {
+    public double getVelY() {
         return velY;
     }
 
@@ -64,11 +65,11 @@ public abstract class GameObject {
         this.y = y;
     }
 
-    public void setVelX(int velX) {
+    public void setVelX(double velX) {
         this.velX = velX;
     }
 
-    public void setVelY(int velY) {
+    public void setVelY(double velY) {
         this.velY = velY;
     }
 

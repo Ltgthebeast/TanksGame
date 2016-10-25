@@ -35,11 +35,7 @@ public class GameImage extends GameObject{
 
     @Override
     public void render(Graphics2D g) {
-        ImageIcon img = new ImageIcon(this.getClass().getResource("/tanksgame/Images/tanque-comic.jpg"));
-        System.out.println(img);
-        Image image = img.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
         
-        g.drawImage(image, x, y, null);
     }
 
     @Override

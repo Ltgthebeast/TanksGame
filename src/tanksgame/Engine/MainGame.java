@@ -10,13 +10,19 @@ import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javafx.embed.swing.SwingFXUtils;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import tanksgame.Input.Keyboard;
@@ -24,6 +30,8 @@ import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
 import tanksgame.Objects.ID;
 import tanksgame.Objects.GameImage;
+import tanksgame.Objects.Player;
+import tanksgame.Screens.ControlScreen;
 
 /**
  *
@@ -38,18 +46,24 @@ public class MainGame extends Canvas implements Runnable{
     public boolean running = false,
             first = true;
     
+    
     // Mouse Variables
     public static double mouseX = 0, mouseY = 0;
-    public static boolean mouse1Down = false, mouse2Down = false;
+    public static int mouseButton = 0;
     
     // classes
     public static Handler handler;
     public static UseFulFunctions funct = new UseFulFunctions();
     public Frame frame;
+    public static ControlScreen controlScreen = null;
     
     // Buttons
     public static Button start = new Button(-360, -240, 300, 50, ID.Button, null, Color.blue, "Start"),
-            exit = new Button(-360, -180, 300, 50, ID.Button, null, Color.green, "Exit");
+            exit = new Button(-360, -180, 300, 50, ID.Button, null, Color.green, "Exit"),
+            play = new Button(-360, -180, 250, 50, ID.Bullet, null, Color.red, "Play!");
+    
+    // GameObjects
+    public static Player player = new Player(0, 0, 0, 0, ID.Tank, "");
     
     // Images
     public static GameImage tankOnStart = new GameImage(0, 0, 100, 100, ID.Image, "Images/tanque-comic.png");
@@ -152,18 +166,37 @@ public class MainGame extends Canvas implements Runnable{
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
         
         g.translate(WIDTH/2, HEIGHT/2);
-//        ImageIcon bkg = new ImageIcon(this.getClass().getResource("/tanksgame/Images/tanque-comic.jpg"));
-//        Image img = bkg.getImage().getScaledInstance(-WIDTH/2, -HEIGHT/2, 1);
-//        g.drawImage(img, -WIDTH/2, -HEIGHT/2, null);
-        // draw background
+        super.paint(g);
         
         g.setColor(new Color(210,180,140)); // beige
-//        g.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT);
+        g.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT);
+        
+        if(ControlScreen.startScreen){
+            g.drawImage(funct.getImageFromName("background.png"), -WIDTH/4, -HEIGHT/2, null);
+
+            Font f = g.getFont();
+            g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+            g.setColor(Color.green);
+            g.drawString("Tanks", 0, -250);
+            g.setFont(f);
+        }
+        
+        if(ControlScreen.controlScreen){
+            Font f = g.getFont();
+            g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+            g.setColor(Color.green);
+            g.drawString("Controls", 0, -250);
+            g.setFont(f);
+        }
         
         // render all gameobjects
         handler.render(g);
         g.dispose();
         bs.show();
+        
+        if(controlScreen == null){
+            controlScreen = new ControlScreen(g, handler);
+        }
     }
     
     public static void main(String args[]){

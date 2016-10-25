@@ -24,14 +24,14 @@ public class Mouse implements MouseListener, MouseMotionListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-       MainGame.mouse1Down = e.getButton() == 1;
-       MainGame.mouse2Down = e.getButton() == 2;
+       MainGame.mouseButton = e.getButton();
+       // 1 is left, 2 is middle, 3 is right
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-       MainGame.mouse1Down = !(e.getButton() == 1);
-       MainGame.mouse2Down = !(e.getButton() == 2);
+       MainGame.mouseButton = 0;
+       // 1 is left, 2 is middle, 3 is right
     }
 
     @Override
