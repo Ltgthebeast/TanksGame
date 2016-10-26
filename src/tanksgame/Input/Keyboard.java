@@ -34,20 +34,24 @@ public class Keyboard extends KeyAdapter{
             if(temp.getID() == ID.Tank){
                 int code = e.getKeyCode();
                 if(code == KeyEvent.VK_W){
-                    Player.angle = 0;
-                    temp.setVelY(-2*Math.sin(-1*Player.angle));
+                    temp.setVelY(-2);
                 }
                 if(code == KeyEvent.VK_S){
-                    Player.angle = 180;
-                    temp.setVelY(2*Math.sin(-1*Player.angle));
+                    temp.setVelY(2);
                 }
                 if(code == KeyEvent.VK_A){
-                    Player.angle  = 270;
-                    temp.setVelX(-2*Math.cos(-1*Player.angle));
+                    temp.setVelX(-2);
                 }
                 if(code == KeyEvent.VK_D){
-                    Player.angle = 90;
-                    temp.setVelX(2*Math.cos(-1*Player.angle));
+                    temp.setVelX(2);
+                }
+                if(code == KeyEvent.VK_Q){
+                    // rotate left
+                    Player.angle -= 10;
+                }
+                if(code == KeyEvent.VK_E){
+                    // rotate right 
+                    Player.angle += 10;
                 }
                 
                 
@@ -75,6 +79,12 @@ public class Keyboard extends KeyAdapter{
                 }
                 if(e.getKeyCode() == KeyEvent.VK_D){
                     temp.setVelX(0);
+                }
+                if(e.getKeyCode() == KeyEvent.VK_Q){
+                    Player.angle += 0;                            
+                }
+                if(e.getKeyCode() == KeyEvent.VK_E){
+                    Player.angle += 0;
                 }
                 
             }

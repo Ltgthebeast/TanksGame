@@ -26,20 +26,41 @@ public class Player extends GameObject{
     @Override
     public void render(Graphics2D g) {
         BufferedImage img = MainGame.funct.getImageFromName("tank.png");
-        if(angle != 0){
-            AffineTransform aft = AffineTransform.getRotateInstance(Math.toRadians(angle), x, y);
-            AffineTransformOp op = new AffineTransformOp(aft, AffineTransformOp.TYPE_BILINEAR);
-            g.drawImage(op.filter(img, null), x, y, null);
-        }else{
-            g.drawImage(img, x, y, null);
-        }
+        AffineTransform aft = AffineTransform.getScaleInstance(200, 250);
+        
+        // Rotation information
+
+        double rotationRequired = Math.toRadians (angle);
+        double locationX = img.getWidth() / 2;
+        double locationY = img.getHeight() / 2;
+        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+
+        // Drawing the rotated image at the required drawing locations
+        g.drawImage(op.filter(img, null), (int)x, (int)y, null);
         
     }
 
     @Override
     public void tick() {
-        x += velX;
-        y += velY;
+        if(angle >= 360){
+            angle-=360;
+        }
+        if(angle != 0){
+            x += Math.cos(angle) * (velX + Math.sin(angle))  * velX;
+            y -= -Math.cos(angle) * (velY + Math.sin(angle)) * velY;
+            /*
+            posX += Math.cos(rotation) *  forwardSpeed + Math.sin(rotation) * strafeSpeed;
+            posY -= -Math.cos(rotation) * strafeSpeed + Math.sin(rotation) * forwardSpeed;
+            */
+        }else{
+            x+=velX;
+            y+=velY;
+        }
+        System.out.println("velX |"+velX);
+        System.out.println("velY |"+velY);
+        System.out.println("angle |"+angle);
+        
     }
     
 }

@@ -40,7 +40,7 @@ public class Button extends GameObject{
     @Override
     public void render(Graphics2D g) {
        // draw the rectangle but have a hover over function
-      boolean within = new Rectangle(x, y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
+      boolean within = new Rectangle((int)x, (int)y+30, width, height).contains(MainGame.mouseX, MainGame.mouseY);
        
        if(within){
            // hovering over button
@@ -48,18 +48,18 @@ public class Button extends GameObject{
        }else{
            g.setColor(c);
        }
-       g.fillRect(x, y, width, height);
+       g.fillRect((int)x, (int)y, width, height);
        g.setColor(Color.BLACK);
        Font org = g.getFont();
        g.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-       g.drawString(text, x+(width/2)-(text.length()*4), y+(height/2));
+       g.drawString(text, (int)x+(width/2)-(text.length()*4), (int)y+(height/2));
        g.setFont(org);
        
     }
 
     @Override
     public void tick() {
-        boolean within = new Rectangle(x, y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
+        boolean within = new Rectangle((int)x, (int)y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
         if(within){
             if(MainGame.mouseButton == 1){
                 switch (text){
