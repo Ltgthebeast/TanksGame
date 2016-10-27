@@ -22,7 +22,7 @@ import tanksgame.Objects.Player;
 public class Keyboard extends KeyAdapter{
     
     public Handler handler;
-    
+    public int x = 0, y = 0;
     public Keyboard(Handler handler){
         this.handler = handler;
     }
@@ -33,28 +33,41 @@ public class Keyboard extends KeyAdapter{
             GameObject temp = handler.objs.get(i);
             if(temp.getID() == ID.Tank){
                 int code = e.getKeyCode();
-                if(code == KeyEvent.VK_W){
-                    temp.setVelY(-2);
-                }
-                if(code == KeyEvent.VK_S){
-                    temp.setVelY(2);
-                }
-                if(code == KeyEvent.VK_A){
-                    temp.setVelX(-2);
-                }
-                if(code == KeyEvent.VK_D){
-                    temp.setVelX(2);
-                }
+                // set angle
                 if(code == KeyEvent.VK_Q){
-                    // rotate left
-                    Player.angle -= 10;
+                    Player.angle -= 90;
                 }
                 if(code == KeyEvent.VK_E){
-                    // rotate right 
-                    Player.angle += 10;
+                    Player.angle += 90;
                 }
-                
-                
+                if(code == KeyEvent.VK_W){
+                   y = -2;
+                }
+                if(code == KeyEvent.VK_S){
+                    y = 2;
+                }
+                if(code == KeyEvent.VK_A){
+                    x = -2;
+                }
+                if(code == KeyEvent.VK_D){
+                    x = 2;
+                }
+                if(Player.angle == 0){
+                    temp.setVelY(y);
+                    temp.setVelX(x);
+                }
+                if(Player.angle == 90){
+                    temp.setVelY(x);
+                    temp.setVelX(-y);
+                }
+                if(Player.angle == 180){
+                    temp.setVelY(-y);
+                    temp.setVelX(x);
+                }
+                if(Player.angle == 270){
+                    temp.setVelY(-x);
+                    temp.setVelX(y);
+                }
                 
             }
         }
@@ -69,23 +82,19 @@ public class Keyboard extends KeyAdapter{
             if(temp.getID() == ID.Tank){
                 
                 if(e.getKeyCode() == KeyEvent.VK_W){
-                    temp.setVelY(0);
+                    y = 0;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_S){
-                    temp.setVelY(0);
+                    y = 0;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_A){
-                    temp.setVelX(0);
+                     x = 0;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_D){
-                    temp.setVelX(0);
+                    x = 0;
                 }
-                if(e.getKeyCode() == KeyEvent.VK_Q){
-                    Player.angle += 0;                            
-                }
-                if(e.getKeyCode() == KeyEvent.VK_E){
-                    Player.angle += 0;
-                }
+                temp.setVelX(x);
+                temp.setVelY(y);
                 
             }
         }

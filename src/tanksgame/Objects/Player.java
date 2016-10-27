@@ -6,6 +6,7 @@
 package tanksgame.Objects;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -46,21 +47,28 @@ public class Player extends GameObject{
         if(angle >= 360){
             angle-=360;
         }
-        if(angle != 0){
-            x += Math.cos(angle) * (velX + Math.sin(angle))  * velX;
-            y -= -Math.cos(angle) * (velY + Math.sin(angle)) * velY;
-            /*
-            posX += Math.cos(rotation) *  forwardSpeed + Math.sin(rotation) * strafeSpeed;
-            posY -= -Math.cos(rotation) * strafeSpeed + Math.sin(rotation) * forwardSpeed;
-            */
-        }else{
-            x+=velX;
-            y+=velY;
+        if(angle < 0){
+            angle+=360;
         }
-        System.out.println("velX |"+velX);
-        System.out.println("velY |"+velY);
-        System.out.println("angle |"+angle);
         
+        x+=velX;
+        y+=velY;
+        
+//        System.out.println("velX |"+velX);
+//        System.out.println("velY |"+velY);
+//        System.out.println("angle |"+angle);
+        System.out.println("x|"+x);
+        System.out.println("y|"+y);
     }
+
+    @Override
+    public boolean collision(GameObject obj) {
+        Rectangle thisRect = new Rectangle((int)this.x, (int)this.y, (int)this.width, (int)this.height),
+                objRect = new Rectangle((int)obj.x, (int)obj.y, (int)obj.width, (int)obj.height);
+        
+        return thisRect.intersects(objRect);
+    }
+    
+    
     
 }

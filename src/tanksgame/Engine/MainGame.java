@@ -29,7 +29,6 @@ import tanksgame.Input.Keyboard;
 import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
 import tanksgame.Objects.ID;
-import tanksgame.Objects.GameImage;
 import tanksgame.Objects.Player;
 import tanksgame.Screens.ControlScreen;
 
@@ -65,8 +64,7 @@ public class MainGame extends Canvas implements Runnable{
     // GameObjects
     public static Player player = new Player(0, 0, 0, 0, ID.Tank, "");
     
-    // Images
-    public static GameImage tankOnStart = new GameImage(0, 0, 100, 100, ID.Image, "Images/tanque-comic.png");
+    
     
     public MainGame(){
         frame = new Frame(WIDTH, HEIGHT, TITLE, this);
@@ -80,8 +78,6 @@ public class MainGame extends Canvas implements Runnable{
         handler.add(start);
         handler.add(exit);
         
-        // add tank image
-        handler.add(tankOnStart);
     }
     
     

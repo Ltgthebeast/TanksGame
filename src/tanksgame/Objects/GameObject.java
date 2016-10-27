@@ -16,11 +16,11 @@ import javax.swing.ImageIcon;
  */
 public abstract class GameObject {
     
-    public GameObject(double x, double y, double velX, double velY, ID id, String image){
+    public GameObject(double x, double y, double width, double height, ID id, String image){
        this.x = x;
        this.y = y;
-       this.velX = velX;
-       this.velY = velY;
+       this.width = width;
+       this.height = height;
        this.id = id;
        this.image = image;        
     }
@@ -28,10 +28,30 @@ public abstract class GameObject {
     public abstract void render(Graphics2D g);
     public abstract void tick();
     
-    protected double x, y;
+    protected double x, y, height, width;
     protected double velX, velY;
     protected ID id;
     protected String image;
+    
+    public abstract boolean collision(GameObject obj);
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+      
+    
     
     public ID getID(){
         return id;

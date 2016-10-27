@@ -58,9 +58,8 @@ public class Button extends GameObject{
     }
 
     @Override
-    public void tick() {
-        boolean within = new Rectangle((int)x, (int)y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
-        if(within){
+    public void tick() {        
+        if(collision(null)){
             if(MainGame.mouseButton == 1){
                 switch (text){
                     
@@ -87,6 +86,12 @@ public class Button extends GameObject{
         
         x+=velX;
         y+=velY;
+    }
+
+    @Override
+    public boolean collision(GameObject obj) {
+        boolean within = new Rectangle((int)x, (int)y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
+        return within;
     }
     
 }
