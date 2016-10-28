@@ -11,24 +11,14 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Image;
 import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javafx.embed.swing.SwingFXUtils;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.SwingUtilities;
 import tanksgame.Input.Keyboard;
 import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
 import tanksgame.Objects.ID;
+import tanksgame.Objects.InvisibleWall;
 import tanksgame.Objects.Player;
 import tanksgame.Screens.ControlScreen;
 
@@ -62,9 +52,13 @@ public class MainGame extends Canvas implements Runnable{
             play = new Button(-360, -180, 250, 50, ID.Bullet, null, Color.red, "Play!");
     
     // GameObjects
-    public static Player player = new Player(0, 0, 0, 0, ID.Tank, "");
+    public static Player player = new Player(0, 0, 90, 142, ID.Tank, "");
     
-    
+    // Invisible Walls
+    public static InvisibleWall top = new InvisibleWall(-WIDTH/2, -HEIGHT/2, WIDTH, 10, ID.Wall, "top"),
+            bottom = new InvisibleWall(-WIDTH/2, HEIGHT/2-40, WIDTH, 10, ID.Wall, "bottom"),
+            left = new InvisibleWall(-WIDTH/2, -HEIGHT/2, 10, HEIGHT, ID.Wall, "left"),
+            right = new InvisibleWall(WIDTH/2-19, -HEIGHT/2, 10, HEIGHT, ID.Wall, "right");
     
     public MainGame(){
         frame = new Frame(WIDTH, HEIGHT, TITLE, this);
@@ -78,6 +72,11 @@ public class MainGame extends Canvas implements Runnable{
         handler.add(start);
         handler.add(exit);
         
+        // add Invisible Walls
+        handler.add(top);
+        handler.add(bottom);
+        handler.add(left);
+        handler.add(right);
     }
     
     

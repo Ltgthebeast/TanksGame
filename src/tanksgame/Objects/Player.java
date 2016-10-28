@@ -18,7 +18,7 @@ import tanksgame.Engine.MainGame;
  */
 public class Player extends GameObject{
 
-    public static double angle = 0;
+    public static int angle = 0;
     
     public Player(int x, int y, double velX, double velY, ID id, String image) {
         super(x, y, velX, velY, id, image);
@@ -26,30 +26,21 @@ public class Player extends GameObject{
 
     @Override
     public void render(Graphics2D g) {
-        BufferedImage img = MainGame.funct.getImageFromName("tank.png");
-        AffineTransform aft = AffineTransform.getScaleInstance(200, 250);
-        
-        // Rotation information
-
-        double rotationRequired = Math.toRadians (angle);
-        double locationX = img.getWidth() / 2;
-        double locationY = img.getHeight() / 2;
-        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        // Drawing the rotated image at the required drawing locations
-        g.drawImage(op.filter(img, null), (int)x, (int)y, null);
-        
-    }
-
-    @Override
-    public void tick() {
+        System.out.println("angle|"+angle);
         if(angle >= 360){
             angle-=360;
         }
         if(angle < 0){
             angle+=360;
         }
+        BufferedImage img = MainGame.funct.getImageFromName("tank"+angle+".png");
+        
+        g.drawImage(img, (int)x-(img.getWidth() / 2), (int)y-(img.getHeight() / 2), null);
+    }
+
+    @Override
+    public void tick() {
+        
         
         x+=velX;
         y+=velY;
@@ -57,8 +48,8 @@ public class Player extends GameObject{
 //        System.out.println("velX |"+velX);
 //        System.out.println("velY |"+velY);
 //        System.out.println("angle |"+angle);
-        System.out.println("x|"+x);
-        System.out.println("y|"+y);
+//        System.out.println("x|"+x);
+//        System.out.println("y|"+y);
     }
 
     @Override

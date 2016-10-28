@@ -5,10 +5,8 @@
  */
 package tanksgame.Objects;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.awt.Rectangle;
 
 /**
  *
@@ -51,7 +49,9 @@ public abstract class GameObject {
         this.width = width;
     }
       
-    
+    public Rectangle getBounds(){
+        return new Rectangle((int)this.x, (int)this.y-30 , (int)this.width, (int)this.height);
+    }
     
     public ID getID(){
         return id;

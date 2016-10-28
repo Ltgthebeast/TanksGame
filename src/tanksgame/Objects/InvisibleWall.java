@@ -5,7 +5,11 @@
  */
 package tanksgame.Objects;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tanksgame.Engine.MainGame;
 
 /**
@@ -21,25 +25,36 @@ public class InvisibleWall extends GameObject{
     @Override
     public void render(Graphics2D g) {
         // no graphics for inivisble wall
+//        g.setColor(Color.blue);
+//        g.drawRect((int)x, (int)y, (int)this.width, (int)this.height);
     }
 
     @Override
     public void tick() {
         for(int i = 0; i < MainGame.handler.objs.size(); i++){
             GameObject temp = MainGame.handler.objs.get(i);
-            if(collision(temp)){
-                if()
+            
+            if(collision(temp) && (temp.getID() != ID.Wall || temp.getID() == ID.Image || temp.getID() == ID.Button)){
+//                System.out.println(this.getImage());
+//                System.out.println(temp.getID());
+                temp.setVelX(-temp.getVelX());
+                temp.setVelY(-temp.getVelY());
+               
+                temp.tick();
+                
+                temp.setVelX(0);
+                temp.setVelY(0);
             }
         }
     }
 
-    public int getDirectionCollision(GameObject obj){
-        // return the direction of the collision
-    }
     
     @Override
     public boolean collision(GameObject obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Rectangle thisRect = getBounds(),
+            objRect = obj.getBounds();
+        
+        return thisRect.intersects(objRect);
     }
     
 }
