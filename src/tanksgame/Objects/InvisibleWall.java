@@ -27,8 +27,8 @@ public class InvisibleWall extends GameObject{
     @Override
     public void render(Graphics2D g) {
         // no graphics for inivisble wall
-        g.setColor(Color.blue);
-        g.drawRect((int)x, (int)y, (int)this.width, (int)this.height);
+//        g.setColor(Color.blue);
+//        g.drawRect((int)x, (int)y, (int)this.width, (int)this.height);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Player extends GameObject{
 
     public static int angle = 0;
     public BufferedImage can = MainGame.funct.getImageFromName("tankCan.png"),
-            tank = MainGame.funct.getImageFromName("tank0.png");
+            tank = MainGame.funct.getImageFromName("tank30.png");
     
     public Player(int x, int y, double velX, double velY, ID id, String image) {
         super(x, y, velX, velY, id, image);
@@ -42,13 +42,15 @@ public class Player extends GameObject{
         }
         
         can = MainGame.funct.getImageFromName("tankCan.png");
-        tank = MainGame.funct.getImageFromName("tank"+angle+".png");
-        AffineTransform aft = AffineTransform.getRotateInstance(Math.toRadians(-90), (x-tank.getWidth()/2), y-tank.getHeight()/2);
-        AffineTransformOp op = new AffineTransformOp(aft, AffineTransformOp.TYPE_BILINEAR);
+        tank = MainGame.funct.getImageFromName("tank3"+angle+".png");
         
+        double angle = Math.atan(MainGame.mouseX/-MainGame.mouseY);
         
         g.drawImage(tank, (int)(x-tank.getWidth()/2), (int)y-tank.getHeight()/2, null);
-        g.drawImage(op.filter(can, null), (int) (x-tank.getWidth()/2)+20, (int) y-tank.getHeight()/2, null);
+        g.rotate(angle);
+        g.drawImage(can, (int)(x-tank.getWidth()/2)+22, (int)y-tank.getHeight()/2+12, null);
+        g.rotate(-angle);
+//        g.drawImage(op.filter(can, ), (int) (x-tank.getWidth()/2)+20, (int) y-tank.getHeight()/2, null);
     }
     
      public String getIntersectedWall(){

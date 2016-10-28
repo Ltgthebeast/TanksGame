@@ -33,13 +33,8 @@ public class Keyboard extends KeyAdapter{
             GameObject temp = handler.objs.get(i);
             if(temp.getID() == ID.Tank){
                 int code = e.getKeyCode();
-                // set angle
-                if(code == KeyEvent.VK_Q){
-                    Player.angle -= 90;
-                }
-                if(code == KeyEvent.VK_E){
-                    Player.angle += 90;
-                }
+                // set movement
+                
                 if(code == KeyEvent.VK_W){
                    y = -2;
                 }
@@ -52,22 +47,8 @@ public class Keyboard extends KeyAdapter{
                 if(code == KeyEvent.VK_D){
                     x = 2;
                 }
-                if(Player.angle == 0){
-                    temp.setVelY(y);
-                    temp.setVelX(x);
-                }
-                if(Player.angle == 90){
-                    temp.setVelY(x);
-                    temp.setVelX(-y);
-                }
-                if(Player.angle == 180){
-                    temp.setVelY(-y);
-                    temp.setVelX(x);
-                }
-                if(Player.angle == 270){
-                    temp.setVelY(-x);
-                    temp.setVelX(y);
-                }
+                temp.setVelX(x);
+                temp.setVelY(y);
                 
             }
         }
