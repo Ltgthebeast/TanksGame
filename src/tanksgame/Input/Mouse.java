@@ -10,6 +10,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import tanksgame.Engine.MainGame;
+import tanksgame.Objects.Bullet;
+import tanksgame.Objects.GameObject;
+import tanksgame.Objects.ID;
+import tanksgame.Objects.Player;
 
 /**
  *
@@ -25,6 +29,17 @@ public class Mouse implements MouseListener, MouseMotionListener{
     @Override
     public void mousePressed(MouseEvent e) {
        MainGame.mouseButton = e.getButton();
+       if(e.getButton() == 1){
+       // left mouse means fire bullet
+            
+            Bullet bullet = new Bullet(MainGame.player.getX()+20, MainGame.player.getY()+20, 9, 40, ID.Bullet, "", MainGame.player.canAngle);
+            MainGame.handler.add(bullet);
+            // need to get speed based off angle
+            double velY = Math.cos(MainGame.player.canAngle) * 5,
+                    velX = Math.sin(MainGame.player.canAngle) * 5;
+
+
+       }
        // 1 is left, 2 is middle, 3 is right
     }
 

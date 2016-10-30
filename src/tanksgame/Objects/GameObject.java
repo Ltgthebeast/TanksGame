@@ -33,16 +33,16 @@ public abstract class GameObject {
     
     public abstract boolean collision(GameObject obj);
 
-    public double getHeight() {
-        return height;
+    public int getHeight() {
+        return  (int)height;
     }
 
     public void setHeight(double height) {
         this.height = height;
     }
 
-    public double getWidth() {
-        return width;
+    public int getWidth() {
+        return (int)width;
     }
 
     public void setWidth(double width) {
@@ -57,12 +57,12 @@ public abstract class GameObject {
         return id;
     }
 
-    public double getX() {
-        return x;
+    public int getX() {
+        return (int)x;
     }
 
-    public double getY() {
-        return y;
+    public int getY() {
+        return (int) y;
     }
 
     public double getVelX() {

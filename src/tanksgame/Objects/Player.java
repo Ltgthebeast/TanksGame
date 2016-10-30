@@ -23,7 +23,7 @@ import tanksgame.Engine.MainGame;
  */
 public class Player extends GameObject{
 
-    public static int angle = 0;
+    public double canAngle = 0;
     public BufferedImage can = MainGame.funct.getImageFromName("tankCan.png"),
             tank = MainGame.funct.getImageFromName("tank30.png");
     
@@ -33,35 +33,42 @@ public class Player extends GameObject{
 
     @Override
     public void render(Graphics2D g) {
-        System.out.println("angle|"+angle);
-        if(angle >= 360){
-            angle-=360;
-        }
-        if(angle < 0){
-            angle+=360;
-        }
+//        System.out.println("angle|"+angle);
+        
         
         can = MainGame.funct.getImageFromName("tankCan.png");
-        tank = MainGame.funct.getImageFromName("tank3"+angle+".png");
+        tank = MainGame.funct.getImageFromName("tank30.png");
         
-        double angle = Math.atan(MainGame.mouseX/-MainGame.mouseY);
         
+        
+        double angle = Math.atan(-(MainGame.mouseX-22)/MainGame.mouseY);
+//        System.out.println("angle|"+Math.toDegrees(angle));
+        if(MainGame.mouseY > 0){
+            angle = Math.PI+angle;
+        }
+        double xConstant = 22, yConstant = 52;
         g.drawImage(tank, (int)(x-tank.getWidth()/2), (int)y-tank.getHeight()/2, null);
-        g.rotate(angle);
+        g.rotate(angle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
         g.drawImage(can, (int)(x-tank.getWidth()/2)+22, (int)y-tank.getHeight()/2+12, null);
-        g.rotate(-angle);
+        g.rotate(-angle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
+        canAngle = angle;
 //        g.drawImage(op.filter(can, ), (int) (x-tank.getWidth()/2)+20, (int) y-tank.getHeight()/2, null);
     }
     
      public String getIntersectedWall(){
         String wall = "";
         
-        for(int i = 0; i < MainGame.handler.objs.size(); i++){
-            GameObject temp = MainGame.handler.objs.get(i);
-            if(collision(temp)){
-                wall = temp.getImage();
-                break;
-            }            
+        if(collision(MainGame.bottom)){
+            return "bottom";
+        }
+        if(collision(MainGame.top)){
+            return "top";
+        }
+        if(collision(MainGame.left)){
+            return "left";
+        }
+        if(collision(MainGame.right)){
+            return "right";
         }
         
         return wall;

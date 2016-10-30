@@ -27,46 +27,31 @@ public class InvisibleWall extends GameObject{
     @Override
     public void render(Graphics2D g) {
         // no graphics for inivisble wall
-//        g.setColor(Color.blue);
-//        g.drawRect((int)x, (int)y, (int)this.width, (int)this.height);
+        g.setColor(Color.blue);
+        g.drawRect((int)x, (int)y, (int)this.width, (int)this.height);
     }
 
     @Override
     public void tick() {
-        for(int i = 0; i < MainGame.handler.objs.size(); i++){
-            GameObject temp = MainGame.handler.objs.get(i);
-            
-            if(temp.collision(this) && (temp.getID() != ID.Wall || temp.getID() == ID.Image || temp.getID() == ID.Button)){
-                
+        
                 // move back based on direction
-                String direction = MainGame.player.getIntersectedWall();
-                
-                if(direction.equals("bottom")){
-                    // move up
-                    temp.setY(temp.getY()-5);
-                }
-                if(direction.equals("top")){
-                    // move down
-                    temp.setY(temp.getY()+5);
-                }
-                if(direction.equals("left")){
-                    // move right
-                    temp.setX(temp.getX()+5);
-                }
-                if(direction.equals("right")){
-                    // move left
-                    temp.setX(temp.getX()-5);
-                }
-                
-//                temp.setVelX(-temp.getVelX());
-//                temp.setVelY(-temp.getVelY());
-//                
-////                for(int k = 0; k < updateTime; k++){
-////                    temp.tick();
-////                }
-//                temp.setVelX(0);
-//                temp.setVelY(0);
-            }
+        String direction = MainGame.player.getIntersectedWall();
+
+        if(direction.equals("bottom")){
+            // move up
+                MainGame.player.setY(MainGame.player.getY()-5);
+        }
+        if(direction.equals("top")){
+            // move down
+            MainGame.player.setY(MainGame.player.getY()+5);
+        }
+        if(direction.equals("left")){
+            // move right
+            MainGame.player.setX(MainGame.player.getX()+5);
+        }
+        if(direction.equals("right")){
+            // move left
+            MainGame.player.setX(MainGame.player.getX()-5);
         }
     }
 
