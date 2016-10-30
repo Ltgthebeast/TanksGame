@@ -5,10 +5,14 @@
         <group>
             <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Engine/MainGame.java</file>
             <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/GameObject.java</file>
-            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/Images/tank0.png</file>
+            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/Button.java</file>
+            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Screens/ControlScreen.java</file>
             <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/InvisibleWall.java</file>
-            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/Images/tank30.png</file>
+            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Input/Mouse.java</file>
+            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/Bullet.java</file>
             <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/Player.java</file>
+            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/Map.java</file>
+            <file>file:/C:/Users/Luke%20Garceau/Documents/NetBeansProjects/TanksGame/src/tanksgame/Objects/VisibleWall.java</file>
         </group>
     </open-files>
 </project-private>
