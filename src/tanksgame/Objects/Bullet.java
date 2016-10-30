@@ -33,13 +33,8 @@ public class Bullet extends GameObject{
     public void tick() {
         x += velX;
         y += -velY;
-        for(int i = 0; i < MainGame.handler.objs.size(); i++){
-            GameObject temp = MainGame.handler.objs.get(i);
-            if(temp.getID() == ID.Wall){
-                if(collision(temp)){
-                    MainGame.handler.remove(this);
-                }                    
-            }
+        if(collision(MainGame.bottom) || collision(MainGame.top) || collision(MainGame.left) || collision(MainGame.right)){
+            MainGame.handler.remove(this);
         }
     }
 

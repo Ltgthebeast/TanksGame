@@ -14,6 +14,7 @@ import tanksgame.Objects.Bullet;
 import tanksgame.Objects.GameObject;
 import tanksgame.Objects.ID;
 import tanksgame.Objects.Player;
+import tanksgame.Screens.ControlScreen;
 
 /**
  *
@@ -31,14 +32,15 @@ public class Mouse implements MouseListener, MouseMotionListener{
        MainGame.mouseButton = e.getButton();
        if(e.getButton() == 1){
        // left mouse means fire bullet
-            
-            Bullet bullet = new Bullet(MainGame.player.getX()+20, MainGame.player.getY()+20, 9, 40, ID.Bullet, "", MainGame.player.canAngle);
-            MainGame.handler.add(bullet);
-            // need to get speed based off angle
-            double velY = Math.cos(MainGame.player.canAngle) * 5,
-                    velX = Math.sin(MainGame.player.canAngle) * 5;
-
-
+            if(ControlScreen.gameScreen){
+                Bullet bullet = new Bullet(MainGame.player.getX()+10, MainGame.player.getY()+30, 9, 40, ID.Bullet, "", MainGame.player.canAngle);
+                MainGame.handler.add(bullet);
+                // need to get speed based off angle
+                double velY = Math.cos(MainGame.player.canAngle) * 5,
+                        velX = Math.sin(MainGame.player.canAngle) * 5;
+                bullet.setVelX(velX);
+                bullet.setVelY(velY);
+            }
        }
        // 1 is left, 2 is middle, 3 is right
     }
