@@ -22,6 +22,7 @@ import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
 import tanksgame.Objects.ID;
 import tanksgame.Objects.InvisibleWall;
+import tanksgame.Objects.Map;
 import tanksgame.Objects.Player;
 import tanksgame.Objects.VisibleWall;
 import tanksgame.Screens.ControlScreen;
@@ -64,7 +65,8 @@ public class MainGame extends Canvas implements Runnable{
             left = new InvisibleWall(-WIDTH/2, -HEIGHT/2, 10, HEIGHT, ID.Wall, "left"),
             right = new InvisibleWall(WIDTH/2-19, -HEIGHT/2, 10, HEIGHT, ID.Wall, "right");
     
-    // Visible Walls
+    // Map
+    
     
     public MainGame(){
         frame = new Frame(WIDTH, HEIGHT, TITLE, this);
