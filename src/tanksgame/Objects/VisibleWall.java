@@ -19,6 +19,7 @@ public class VisibleWall extends GameObject{
 
     @Override
     public void render(Graphics2D g) {
+        g.drawImage()
     }
 
     @Override
