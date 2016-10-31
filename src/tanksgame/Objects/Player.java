@@ -46,6 +46,11 @@ public class Player extends GameObject{
 //        System.out.println("angle|"+Math.toDegrees(angle));
         if(MainGame.mouseY > 0){
             angle = Math.PI+angle;
+            if(angle == 90){
+                angle = 270;
+            }else if(angle == 270){
+                angle = 90;
+            }
         }
         double xConstant = 22, yConstant = 52;
         g.drawImage(tank, (int)(x-tank.getWidth()/2), (int)y-tank.getHeight()/2, null);
