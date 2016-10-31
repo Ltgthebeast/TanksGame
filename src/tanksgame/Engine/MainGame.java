@@ -10,10 +10,13 @@ import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
+import java.awt.Point;
+import javax.swing.SwingUtilities;
 import tanksgame.Input.Keyboard;
 import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
@@ -141,8 +144,10 @@ public class MainGame extends Canvas implements Runnable{
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth(),
                 height = gd.getDisplayMode().getHeight();
-        mouseX = funct.map(mouseX, 0, width, -width/2, width/2);
-        mouseY = funct.map(mouseY, 0, height, -height/2, height/2);
+        
+            mouseX = funct.map(mouseX, 0, width, -width/2, width/2);
+            mouseY = funct.map(mouseY, 0, height, -height/2, height/2);
+        
 
 
 //        System.out.println("Mouse x: "+mouseX+" Mouse y: "+mouseY);

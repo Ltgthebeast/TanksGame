@@ -39,9 +39,10 @@ public class Player extends GameObject{
         can = MainGame.funct.getImageFromName("tankCan.png");
         tank = MainGame.funct.getImageFromName("tank30.png");
         
-        
-        
-        double angle = Math.atan(-(MainGame.mouseX-22)/MainGame.mouseY);
+        // need to make the mouse position relive to the tanks position
+        double mouseX = (MainGame.mouseX-22)-this.getX(),
+                mouseY = (MainGame.mouseY)+this.getY();
+        double angle = Math.atan(-mouseX/mouseY);
 //        System.out.println("angle|"+Math.toDegrees(angle));
         if(MainGame.mouseY > 0){
             angle = Math.PI+angle;
