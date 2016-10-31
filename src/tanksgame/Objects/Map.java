@@ -6,25 +6,36 @@
 package tanksgame.Objects;
 
 import java.awt.Graphics2D;
+import java.util.LinkedList;
 
 /**
  *
  * @author Luke T Garceau
  */
 public class Map extends GameObject{
-
+    
+    public LinkedList<VisibleWall> walls = new LinkedList<VisibleWall>();
+    
     public Map(double x, double y, double width, double height, ID id, String image) {
         super(x, y, width, height, id, image);
+    }
+    
+    public void addWall(VisibleWall wall){
+        walls.add(wall);
     }
 
     @Override
     public void render(Graphics2D g) {
-       // display graphics for map
+       for(int i = 0; i < walls.size(); i++){
+           walls.get(i).render(g);
+       }
     }
 
     @Override
     public void tick() {
-        // update anything like check for a collision
+        for(int i = 0; i < walls.size(); i++){
+           walls.get(i).tick();
+       }
     }
 
     @Override

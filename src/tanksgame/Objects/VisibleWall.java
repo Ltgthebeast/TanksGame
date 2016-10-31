@@ -6,6 +6,7 @@
 package tanksgame.Objects;
 
 import java.awt.Graphics2D;
+import tanksgame.Engine.MainGame;
 
 /**
  *
@@ -19,7 +20,7 @@ public class VisibleWall extends GameObject{
 
     @Override
     public void render(Graphics2D g) {
-        g.drawImage()
+        g.drawImage(MainGame.funct.getImageFromName("wall.png"), (int) x, (int) y, null);
     }
 
     @Override
