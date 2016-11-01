@@ -38,28 +38,28 @@ public class Player extends GameObject{
         
         can = MainGame.funct.getImageFromName("tankCan.png");
         tank = MainGame.funct.getImageFromName("tank30.png");
-        
+        System.out.println("Mouse X|"+MainGame.mouseX);
+        System.out.println("Mouse Y|"+MainGame.mouseY);
         // need to make the mouse position relive to the tanks position
         double mouseX = (MainGame.mouseX-0)-this.getX(),
-                mouseY = (MainGame.mouseY)+this.getY();
-        double angle = Math.atan(-mouseX/mouseY);
-//        System.out.println("angle|"+Math.toDegrees(angle));
-        if(MainGame.mouseY > 0){
-            angle = Math.PI+angle;
-            if(angle == 90){
-                angle = 270;
-            }else if(angle == 270){
-                angle = 90;
-            }
+                mouseY = (MainGame.mouseY)-this.getY();
+        canAngle = Math.atan(-mouseX/mouseY);
+//        System.out.println("angle|"+Math.toDegrees(canAngle));
+        
+        if(MainGame.mouseY-this.getY() > 0){
+            canAngle += Math.PI;
         }
-        double xConstant = 22, yConstant = 52;
+//        System.out.println(Math.toDegrees(angle));
+        double xRotConstant = 22, yRotConstant = 52;
         g.drawImage(tank, (int)(x-tank.getWidth()/2), (int)y-tank.getHeight()/2, null);
-        g.rotate(angle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
+        g.rotate(canAngle, (int)(x-can.getWidth()/2)+xRotConstant, (int)y-can.getHeight()/2+yRotConstant);
         g.drawImage(can, (int)(x-tank.getWidth()/2)+22, (int)y-tank.getHeight()/2+12, null);
-        g.rotate(-angle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
-        canAngle = angle;
+        g.rotate(-canAngle, (int)(x-can.getWidth()/2)+xRotConstant, (int)y-can.getHeight()/2+yRotConstant);
+        
 //        g.drawImage(op.filter(can, ), (int) (x-tank.getWidth()/2)+20, (int) y-tank.getHeight()/2, null);
     }
+    
+    
     
      public String getIntersectedWall(){
         String wall = "";

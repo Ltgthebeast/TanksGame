@@ -170,14 +170,12 @@ public class MainGame extends Canvas implements Runnable{
         
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
         
-        g.translate(WIDTH/2, HEIGHT/2);
-        super.paint(g);
         
         g.setColor(new Color(210,180,140)); // beige
-        g.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
         
         if(ControlScreen.startScreen){
-            g.drawImage(funct.getImageFromName("background.png"), -WIDTH/4, -HEIGHT/2, null);
+            g.drawImage(funct.getImageFromName("background.png"), WIDTH/4, HEIGHT/8, null);
 
             Font f = g.getFont();
             g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));

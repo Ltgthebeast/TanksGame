@@ -35,16 +35,28 @@ public class Mouse implements MouseListener, MouseMotionListener{
             if(ControlScreen.gameScreen){
                 int x = (MainGame.player.getX()-((MainGame.player.can.getWidth()/4)-10)-25),
                         y = (MainGame.player.getY() - ((MainGame.player.can.getHeight()/4))-25);
-                Bullet bullet = new Bullet(x, y, 9, 40, ID.Bullet, "", MainGame.player.canAngle);
+                System.out.println("x|"+x);
+                System.out.println("y|"+y);
+                
+                double angle = MainGame.player.canAngle;
+                double canXConstant = 123*Math.cos(Math.toRadians(90-angle)), canYConstant = 51*Math.sin(Math.toRadians(90-angle));
+                // fix angle 
+                
+               
+                
+                Bullet bullet = new Bullet(x+canXConstant+26, y+canYConstant-49, 9, 40, ID.Bullet, "", angle);
+                
                 MainGame.handler.add(bullet);
                 // need to get speed based off angle
-                System.out.println("Can Center X|"+MainGame.player.can.getWidth()/4);
-                System.out.println("Can Center Y|"+MainGame.player.can.getHeight()/4);
-
-                System.out.println("x:"+bullet.getX());
-                System.out.println("y:"+bullet.getY());
-                double velY = Math.cos(MainGame.player.canAngle) * 5,
-                        velX = Math.sin(MainGame.player.canAngle) * 5;
+                System.out.println("canX|"+(canXConstant+26));
+                System.out.println("canY|"+(canYConstant-49));
+//                System.out.println("Can Center X|"+MainGame.player.can.getWidth()/4);
+//                System.out.println("Can Center Y|"+MainGame.player.can.getHeight()/4);
+//
+//                System.out.println("x:"+bullet.getX());
+//                System.out.println("y:"+bullet.getY());
+                double velY = Math.cos(angle) * 5,
+                        velX = Math.sin(angle) * 5;
                 bullet.setVelX(velX);
                 bullet.setVelY(velY);
             }
