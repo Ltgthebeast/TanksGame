@@ -5,6 +5,7 @@
  */
 package tanksgame.Objects;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import tanksgame.Engine.MainGame;
@@ -25,6 +26,8 @@ public class Bullet extends GameObject{
     public void render(Graphics2D g) {
       
         g.rotate(angle, x, y);
+//        g.setColor(Color.BLACK);
+//        g.drawLine((int)x,(int) y,(int)x+MainGame.player.can.getWidth(),(int) y+MainGame.player.can.getHeight());
         g.drawImage(MainGame.funct.getImageFromName("bullet.png"), (int) x, (int) y, null);
         g.rotate(-angle, x, y);
     }

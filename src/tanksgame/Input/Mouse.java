@@ -32,8 +32,17 @@ public class Mouse implements MouseListener, MouseMotionListener{
        MainGame.mouseButton = e.getButton();
        if(e.getButton() == 1){
        // left mouse means fire bullet
+       double angle = Math.toDegrees(MainGame.player.canAngle);
             if(ControlScreen.gameScreen){
-                Bullet bullet = new Bullet(MainGame.player.getX(), MainGame.player.getY()-40, 9, 40, ID.Bullet, "", MainGame.player.canAngle);
+                if(angle < 0){
+                    angle+=360;
+                }
+//                System.out.println("bullet angle|"+angle);
+                double x =26*Math.cos(angle),
+                        y = 97*Math.sin(angle);
+                
+                Bullet bullet = new Bullet(MainGame.player.getX(), MainGame.player.getY(), 9, 40, ID.Bullet, "", MainGame.player.canAngle);
+                
                 MainGame.handler.add(bullet);
                 // need to get speed based off angle
                 double velY = Math.cos(MainGame.player.canAngle) * 5,

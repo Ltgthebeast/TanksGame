@@ -14,12 +14,16 @@ import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
+import java.awt.Point;
+import javax.swing.SwingUtilities;
 import tanksgame.Input.Keyboard;
 import tanksgame.Input.Mouse;
 import tanksgame.Objects.Button;
 import tanksgame.Objects.ID;
 import tanksgame.Objects.InvisibleWall;
+import tanksgame.Objects.Map;
 import tanksgame.Objects.Player;
+import tanksgame.Objects.VisibleWall;
 import tanksgame.Screens.ControlScreen;
 
 /**
@@ -34,7 +38,10 @@ public class MainGame extends Canvas implements Runnable{
     private Thread thread;
     public boolean running = false,
             first = true;
+    public static boolean updatePlayer = false;
     
+    // Map variables what map they are on
+    public static int mapCount = 1;
     
     // Mouse Variables
     public static double mouseX = 0, mouseY = 0;
@@ -47,18 +54,26 @@ public class MainGame extends Canvas implements Runnable{
     public static ControlScreen controlScreen = null;
     
     // Buttons
-    public static Button start = new Button(-360, -240, 300, 50, ID.Button, null, Color.blue, "Start"),
-            exit = new Button(-360, -180, 300, 50, ID.Button, null, Color.green, "Exit"),
-            play = new Button(-360, -180, 250, 50, ID.Bullet, null, Color.red, "Play!");
+    public static Button start = new Button(10, 100, 300, 50, ID.Button, null, Color.blue, "Start"),
+            exit = new Button(10, 200, 300, 50, ID.Button, null, Color.green, "Exit"),
+            play = new Button(10, 300, 250, 50, ID.Bullet, null, Color.red, "Play!");
     
     // GameObjects
-    public static Player player = new Player(0, 0, 90, 142, ID.Tank, "");
+    public static Player player = new Player(WIDTH/2, HEIGHT/2, 90, 142, ID.Tank, "");
     
     // Invisible Walls
-    public static InvisibleWall top = new InvisibleWall(-WIDTH/2, -HEIGHT/2, WIDTH, 10, ID.Wall, "top"),
-            bottom = new InvisibleWall(-WIDTH/2, HEIGHT/2-40, WIDTH, 10, ID.Wall, "bottom"),
-            left = new InvisibleWall(-WIDTH/2, -HEIGHT/2, 10, HEIGHT, ID.Wall, "left"),
-            right = new InvisibleWall(WIDTH/2-19, -HEIGHT/2, 10, HEIGHT, ID.Wall, "right");
+    public static InvisibleWall top = new InvisibleWall(0, 0, WIDTH, 10, ID.Wall, "top"),
+            bottom = new InvisibleWall(0, HEIGHT, WIDTH, 10, ID.Wall, "bottom"),
+            left = new InvisibleWall(0, 0, 10, HEIGHT, ID.Wall, "left"),
+            right = new InvisibleWall(WIDTH, 0, 10, HEIGHT, ID.Wall, "right");
+    
+    // Maps
+        // Visible Walls In Maps
+    public static Map map1 = new Map(0, 0, 0, 0, ID.Map, "map1");
+        
+        public static VisibleWall wall1 = new VisibleWall(10, 10, 40, 100, ID.Wall, "top");
+        
+    
     
     public MainGame(){
         frame = new Frame(WIDTH, HEIGHT, TITLE, this);
@@ -77,6 +92,10 @@ public class MainGame extends Canvas implements Runnable{
         handler.add(bottom);
         handler.add(left);
         handler.add(right);
+        
+        // add visible walls to maps 
+        map1.addWall(wall1);
+        
     }
     
     
@@ -141,10 +160,12 @@ public class MainGame extends Canvas implements Runnable{
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth(),
                 height = gd.getDisplayMode().getHeight();
-        mouseX = funct.map(mouseX, 0, width, -width/2, width/2);
-        mouseY = funct.map(mouseY, 0, height, -height/2, height/2);
-
-
+//        mouseX = funct.map(mouseX, 0, width, 0, WIDTH);
+//        mouseY = funct.map(mouseY, 0, height, 0, HEIGHT);
+        Point mousePos = new Point((int)mouseX, (int)mouseY);
+        SwingUtilities.convertPointFromScreen(mousePos, this);
+        mouseX = mousePos.x;
+        mouseY = mousePos.y;
 //        System.out.println("Mouse x: "+mouseX+" Mouse y: "+mouseY);
                
     }
@@ -160,19 +181,17 @@ public class MainGame extends Canvas implements Runnable{
         
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
         
-        g.translate(WIDTH/2, HEIGHT/2);
-        super.paint(g);
         
         g.setColor(new Color(210,180,140)); // beige
-        g.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
         
         if(ControlScreen.startScreen){
-            g.drawImage(funct.getImageFromName("background.png"), -WIDTH/4, -HEIGHT/2, null);
+            g.drawImage(funct.getImageFromName("background.png"), WIDTH/5, HEIGHT/8, null);
 
             Font f = g.getFont();
             g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
             g.setColor(Color.green);
-            g.drawString("Tanks", 0, -250);
+            g.drawString("Tanks", WIDTH/2, 50);
             g.setFont(f);
         }
         
@@ -180,10 +199,17 @@ public class MainGame extends Canvas implements Runnable{
             Font f = g.getFont();
             g.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
             g.setColor(Color.green);
-            g.drawString("Controls", 0, -250);
+            g.drawString("Controls", WIDTH/2, 50);
             g.setFont(f);
         }
-        
+        if(ControlScreen.gameScreen){
+            updatePlayer(g);
+            updatePlayer = false;
+             // render map based on map count
+            map1.renderWalls();
+
+        }
+               
         // render all gameobjects
         handler.render(g);
         g.dispose();
@@ -192,6 +218,16 @@ public class MainGame extends Canvas implements Runnable{
         if(controlScreen == null){
             controlScreen = new ControlScreen(g, handler);
         }
+    }
+    
+    public void updatePlayer(Graphics2D g){
+        if(updatePlayer = true){
+            player.render(g);
+        }
+    }
+    
+    public static void updatePlayer(){
+        updatePlayer = true;
     }
     
     public static void main(String args[]){

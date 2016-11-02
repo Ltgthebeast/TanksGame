@@ -40,18 +40,23 @@ public class Player extends GameObject{
         tank = MainGame.funct.getImageFromName("tank30.png");
         
         
-        
-        double angle = Math.atan(-(MainGame.mouseX-22)/MainGame.mouseY);
-//        System.out.println("angle|"+Math.toDegrees(angle));
-        if(MainGame.mouseY > 0){
-            angle = Math.PI+angle;
+        double  xCord = MainGame.mouseX-MainGame.player.x,
+                yCord = MainGame.mouseY-MainGame.player.y;
+     
+        canAngle = Math.atan(-xCord/yCord);
+        if(yCord > 0){
+            canAngle += Math.PI;
         }
+        
+//        System.out.println("angle|"+Math.toDegrees(canAngle));
+//        System.out.println("mouseX|"+MainGame.mouseX);
+//        System.out.println("mouseY|"+MainGame.mouseY);
         double xConstant = 22, yConstant = 52;
         g.drawImage(tank, (int)(x-tank.getWidth()/2), (int)y-tank.getHeight()/2, null);
-        g.rotate(angle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
+        g.rotate(canAngle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
         g.drawImage(can, (int)(x-tank.getWidth()/2)+22, (int)y-tank.getHeight()/2+12, null);
-        g.rotate(-angle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
-        canAngle = angle;
+        g.rotate(-canAngle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
+        
 //        g.drawImage(op.filter(can, ), (int) (x-tank.getWidth()/2)+20, (int) y-tank.getHeight()/2, null);
     }
     
