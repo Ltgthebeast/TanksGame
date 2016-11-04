@@ -23,13 +23,14 @@ public class UseFulFunctions {
         
         double factor = 1.0d;
         
-        if(src.getWidth() > src.getHeight()){
+        
             factor = ((double) src.getHeight() / (double) src.getWidth());
             fH = (int)(fW * factor);
-        }else{
+            
+            
             factor = ((double) src.getWidth() / (double) src.getHeight());
             fW = (int)(fH * factor);
-        }
+        
         
         BufferedImage resizedImage = new BufferedImage(fW, fH, BufferedImage.TRANSLUCENT);
         Graphics2D g2 = resizedImage.createGraphics();

@@ -69,9 +69,9 @@ public class MainGame extends Canvas implements Runnable{
     
     // Maps
         // Visible Walls In Maps
-    public static Map map1 = new Map(0, 0, 0, 0, ID.Map, "map1");
+    public static Map map1 = new Map(0, 0, WIDTH, HEIGHT, ID.Map, "map1");
         
-        public static VisibleWall wall1 = new VisibleWall(10, 10, 40, 100, ID.Wall, "top");
+        public static VisibleWall wall1 = new VisibleWall(10, 10, 50, 400, ID.Wall, "top");
         
     
     
@@ -94,6 +94,7 @@ public class MainGame extends Canvas implements Runnable{
         handler.add(right);
         
         // add visible walls to maps 
+        
         map1.addWall(wall1);
         
     }
@@ -206,8 +207,12 @@ public class MainGame extends Canvas implements Runnable{
             updatePlayer(g);
             updatePlayer = false;
              // render map based on map count
+            if(mapCount == 1){
+                mapCount++;
+                handler.add(map1);
+            }
             map1.renderWalls();
-
+            
         }
                
         // render all gameobjects

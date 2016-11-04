@@ -5,13 +5,15 @@
  */
 package tanksgame.Objects;
 
-import Scalr;
-import Scalr;
+
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
 import tanksgame.Engine.MainGame;
+import tanksgame.lib.Scalr;
 
 /**
  *
@@ -27,8 +29,10 @@ public class VisibleWall extends GameObject{
     public void render(Graphics2D g) {
         BufferedImage image = MainGame.funct.getImageFromName("wall.png"),
                 scaled;
-        scaled = Scalr.resize(image, Scalr.Method.BALANCED, width, height);
-//        scaled = MainGame.funct.getScaledImage(image, (int) width, (int) height, (int) x, (int) y);
+//        scaled = Scalr.resize(image, (int) width, (int) height, Scalr.OP_ANTIALIAS);
+        
+        scaled = MainGame.funct.getScaledImage(image, (int) width, (int) height, (int) x, (int) y);
+        System.out.println(scaled.getWidth()+"|"+scaled.getHeight());
         g.drawImage(scaled, (int)x, (int)y, null);
                 
         

@@ -32,14 +32,13 @@ public class Map extends GameObject{
     @Override
     public void render(Graphics2D g) {
        // display graphics for map
-       if(render){
-           if(!rendered){
-               for(int i = 0; i < walls.size(); i++){
-                   walls.get(i).render(g);
-               }
-           }
-           rendered = true;
-       }
+
+        System.out.println("rendering");
+
+        for(int i = 0; i < walls.size(); i++){
+            walls.get(i).render(g);
+            System.out.println("Rendering object|"+i);
+        } 
     }
 
     @Override
