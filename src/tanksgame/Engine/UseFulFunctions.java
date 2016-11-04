@@ -18,12 +18,18 @@ import javax.imageio.ImageIO;
  */
 public class UseFulFunctions {
     
-    public BufferedImage getScaledImage(BufferedImage src, int w, int h){
-        BufferedImage scaled = new BufferedImage(w, h, BufferedImage.TYPE_4BYTE_ABGR);
-        Graphics2D g = scaled.createGraphics();
-        AffineTransform at = AffineTransform.getScaleInstance(w, h);
-        g.drawRenderedImage(src, at);
-        return scaled;
+    public BufferedImage getScaledImage(BufferedImage img, int w, int h){
+        
+        int Ow = img.getWidth();
+        int Oh = img.getHeight();
+        BufferedImage dimg = new BufferedImage(w, h, img.getType());
+        Graphics2D g = dimg.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.drawImage(img, 0, 0, w, h, 0, 0, Ow, Oh, null);
+        g.dispose();  
+
+        return dimg;
     }
     
     public double map(double input, double oldMin, double oldMax, double newMin, double newMax){

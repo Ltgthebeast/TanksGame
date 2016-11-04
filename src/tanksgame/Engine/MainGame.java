@@ -71,7 +71,7 @@ public class MainGame extends Canvas implements Runnable{
         // Visible Walls In Maps
     public static Map map1 = new Map(0, 0, 0, 0, ID.Map, "map1");
         
-        public static VisibleWall wall1 = new VisibleWall(10, 10, 100, 40, ID.Wall, "top");
+        public static VisibleWall wall1 = new VisibleWall(10, 10, 500, 20, ID.Wall, "top");
         
     
     
