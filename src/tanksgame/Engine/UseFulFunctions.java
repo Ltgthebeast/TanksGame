@@ -7,6 +7,7 @@ package tanksgame.Engine;
 
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -17,26 +18,12 @@ import javax.imageio.ImageIO;
  */
 public class UseFulFunctions {
     
-    public BufferedImage getScaledImage(BufferedImage src, int w, int h, int x, int y){
-        int fW = w,
-                fH = h;
-        
-        double factor = 1.0d;
-        
-        if(src.getWidth() > src.getHeight()){
-            factor = ((double) src.getHeight() / (double) src.getWidth());
-            fH = (int)(fW * factor);
-        }else{
-            factor = ((double) src.getWidth() / (double) src.getHeight());
-            fW = (int)(fH * factor);
-        }
-        
-        BufferedImage resizedImage = new BufferedImage(fW, fH, BufferedImage.TRANSLUCENT);
-        Graphics2D g2 = resizedImage.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(src, x, y, fW, fH, null);
-        g2.dispose();
-        return resizedImage;
+    public BufferedImage getScaledImage(BufferedImage src, int w, int h){
+        BufferedImage scaled = new BufferedImage(w, h, BufferedImage.TYPE_4BYTE_ABGR);
+        Graphics2D g = scaled.createGraphics();
+        AffineTransform at = AffineTransform.getScaleInstance(w, h);
+        g.drawRenderedImage(src, at);
+        return scaled;
     }
     
     public double map(double input, double oldMin, double oldMax, double newMin, double newMax){
