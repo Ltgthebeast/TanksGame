@@ -5,6 +5,7 @@
  */
 package tanksgame.Objects;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
@@ -63,17 +64,13 @@ public class Player extends GameObject{
      public String getIntersectedWall(){
         String wall = "";
         
-        if(collision(MainGame.bottom)){
-            return "bottom";
-        }
-        if(collision(MainGame.top)){
-            return "top";
-        }
-        if(collision(MainGame.left)){
-            return "left";
-        }
-        if(collision(MainGame.right)){
-            return "right";
+        for(int i = 0; i < MainGame.handler.objs.size(); i++){
+            GameObject temp = MainGame.handler.objs.get(i);
+            if(temp.id == ID.Wall){
+                if(collision(temp)){
+                    return temp.getImage();
+                }
+            }
         }
         
         return wall;
@@ -95,12 +92,14 @@ public class Player extends GameObject{
 
     @Override
     public boolean collision(GameObject obj) {
-        Rectangle thisRect = new Rectangle((int)this.x-tank.getWidth()/2, (int)this.y-tank.getHeight()/2, (int)this.width, (int)this.height),
+        Rectangle thisRect = new Rectangle((int)this.x-tank.getWidth()/4, (int)(this.y-tank.getHeight()/4+20), tank.getWidth()/2, tank.getHeight()/2),
                 objRect = new Rectangle((int)obj.x, (int)obj.y, (int)obj.width, (int)obj.height);
+        
+        
         
         return thisRect.intersects(objRect);
     }
-    
-    
+
+   
     
 }

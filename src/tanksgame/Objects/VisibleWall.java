@@ -25,9 +25,21 @@ public class VisibleWall extends GameObject{
     @Override
     public void render(Graphics2D g) {
         BufferedImage scaled = MainGame.funct.getImageFromName("wall.png");
-//        scaled = MainGame.funct.getScaledImage(scaled, (int) width, (int) height);
+        
+        if(height < scaled.getHeight()){
+            scaled = scaled.getSubimage(0, 0, scaled.getWidth(), (int) height);
+        }else if(width < scaled.getWidth()){
+            scaled = scaled.getSubimage(0, 0, (int) width, scaled.getHeight());
+        }
+        
         int amtWidth =(int) (width / scaled.getWidth()+.5);
-        for(int i = 0; i < )
+        for(int i = 0; i < amtWidth; i++){
+            g.drawImage(scaled, (int)x+(i*scaled.getWidth()) , (int) y, null);
+        }
+        int amtHeight = (int) (height / scaled.getHeight()+.5);
+        for(int i = 0; i < amtHeight; i++){
+            g.drawImage(scaled, (int)x, (int) y+(i*scaled.getHeight()), null);
+        }
 //        g.drawImage(scaled, (int)x, (int)y, null);
 //        System.out.println(scaled.getHeight()+"|"+scaled.getWidth());
         
@@ -35,7 +47,26 @@ public class VisibleWall extends GameObject{
 
     @Override
     public void tick() {
+        String direction = MainGame.player.getIntersectedWall();
+
+        if(direction.equals("bottom")){
+            // move up
+                MainGame.player.setY(MainGame.player.getY()-5);
+        }
+        if(direction.equals("top")){
+            // move down
+            MainGame.player.setY(MainGame.player.getY()+5);
+        }
+        if(direction.equals("left")){
+            // move right
+            MainGame.player.setX(MainGame.player.getX()+5);
+        }
+        if(direction.equals("right")){
+            // move left
+            MainGame.player.setX(MainGame.player.getX()-5);
+        }
     }
+    
 
     @Override
     public boolean collision(GameObject obj) {

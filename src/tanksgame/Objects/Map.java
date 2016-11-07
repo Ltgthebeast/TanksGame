@@ -21,6 +21,10 @@ public class Map extends GameObject{
         super(x, y, width, height, id, image);
     }
     
+    public void addWall(int x, int y, int width, int height, String direction){
+        walls.add(new VisibleWall(x, y, width, height, ID.Wall, direction));
+    }
+    
     public void addWall(VisibleWall e){
         walls.add(e);
     }
