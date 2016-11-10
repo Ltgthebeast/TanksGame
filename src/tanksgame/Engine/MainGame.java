@@ -87,10 +87,10 @@ public class MainGame extends Canvas implements Runnable{
         handler.add(exit);
         
         // add Invisible Walls
-//        handler.add(top);
-//        handler.add(bottom);
-//        handler.add(left);
-//        handler.add(right);
+        handler.add(top);
+        handler.add(bottom);
+        handler.add(left);
+        handler.add(right);
         
         // add visible walls to map1
         map1.addWall(0, 0, (int)WIDTH, 20, "top");
@@ -210,9 +210,9 @@ public class MainGame extends Canvas implements Runnable{
              // render map based on map count
             if(mapCount == 1){
                 mapCount++;
+                map1.addWallsToHandler();
                 handler.add(map1);
             }
-            map1.renderWalls();
             
         }
                

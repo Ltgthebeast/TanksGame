@@ -49,5 +49,11 @@ public class InvisibleWall extends GameObject{
         
         return thisRect.intersects(objRect);
     }
+
+    @Override
+    public Rectangle getBounds(){
+        Rectangle r = new Rectangle((int) this.x, (int) this.y, (int) this.width, (int) this.height);
+        return r;
+    }
     
 }

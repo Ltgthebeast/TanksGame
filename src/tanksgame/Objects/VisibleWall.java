@@ -5,8 +5,10 @@
  */
 package tanksgame.Objects;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import tanksgame.Engine.MainGame;
 
@@ -23,7 +25,16 @@ public class VisibleWall extends GameObject{
     }
 
     @Override
+    public Rectangle getBounds(){
+        Rectangle r = new Rectangle((int) this.x, (int) this.y, (int) this.width, (int) this.height);
+        return r;
+    }
+    
+    
+    
+    @Override
     public void render(Graphics2D g) {
+        
         BufferedImage scaled = MainGame.funct.getImageFromName("wall.png");
         
         if(height < scaled.getHeight()){
@@ -40,6 +51,10 @@ public class VisibleWall extends GameObject{
         for(int i = 0; i < amtHeight; i++){
             g.drawImage(scaled, (int)x, (int) y+(i*scaled.getHeight()), null);
         }
+        
+        drawBounds(g);
+        
+        
 //        g.drawImage(scaled, (int)x, (int)y, null);
 //        System.out.println(scaled.getHeight()+"|"+scaled.getWidth());
         
@@ -47,24 +62,6 @@ public class VisibleWall extends GameObject{
 
     @Override
     public void tick() {
-        String direction = MainGame.player.getIntersectedWall();
-
-        if(direction.equals("bottom")){
-            // move up
-                MainGame.player.setY(MainGame.player.getY()-5);
-        }
-        if(direction.equals("top")){
-            // move down
-            MainGame.player.setY(MainGame.player.getY()+5);
-        }
-        if(direction.equals("left")){
-            // move right
-            MainGame.player.setX(MainGame.player.getX()+5);
-        }
-        if(direction.equals("right")){
-            // move left
-            MainGame.player.setX(MainGame.player.getX()-5);
-        }
     }
     
 

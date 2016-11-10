@@ -6,7 +6,9 @@
 package tanksgame.Objects;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.LinkedList;
+import tanksgame.Engine.MainGame;
 
 /**
  *
@@ -29,8 +31,16 @@ public class Map extends GameObject{
         walls.add(e);
     }
     
-    public void renderWalls(){
-        render = true;
+    public void addWallsToHandler(){
+        for(VisibleWall wall: walls){
+            MainGame.handler.add(wall);
+        }
+    }
+    
+    public void removeWallsFromHandler(){
+        for(VisibleWall wall: walls){
+            MainGame.handler.remove(wall);
+        }
     }
     
     @Override
@@ -51,6 +61,11 @@ public class Map extends GameObject{
     @Override
     public boolean collision(GameObject obj) {
         return false;
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return null;
     }
     
 }

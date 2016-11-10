@@ -43,9 +43,15 @@ public class Bullet extends GameObject{
 
     @Override
     public boolean collision(GameObject obj) {
-        Rectangle thisRect = new Rectangle ((int)x,(int) y, (int)width, (int)height),
-                objRect = new Rectangle((int)obj.x,(int) obj.y,(int) obj.width,(int) obj.height);
-        return objRect.intersects(thisRect);
+        
+        return obj.getBounds().intersects(this.getBounds());
     }
+
+    @Override
+    public Rectangle getBounds() {
+        return new Rectangle ((int)x,(int) y, (int)width, (int)height);
+    }
+    
+    
     
 }

@@ -58,6 +58,7 @@ public class Player extends GameObject{
         g.drawImage(can, (int)(x-tank.getWidth()/2)+22, (int)y-tank.getHeight()/2+12, null);
         g.rotate(-canAngle, (int)(x-can.getWidth()/2)+xConstant, (int)y-can.getHeight()/2+yConstant);
         
+        MainGame.funct.drawBounds(g, this);
 //        g.drawImage(op.filter(can, ), (int) (x-tank.getWidth()/2)+20, (int) y-tank.getHeight()/2, null);
     }
     
@@ -75,29 +76,100 @@ public class Player extends GameObject{
         
         return wall;
     }
+    
+     
 
     @Override
     public void tick() {
-        
-        
         x+=velX;
         y+=velY;
         
-//        System.out.println("velX |"+velX);
-//        System.out.println("velY |"+velY);
-//        System.out.println("angle |"+angle);
-//        System.out.println("x|"+x);
-//        System.out.println("y|"+y);
+        for(int i = 0; i < MainGame.handler.objs.size(); i++){
+            GameObject obj = MainGame.handler.objs.get(i);
+            if(obj.getBounds() != null){
+                if(obj.id == ID.Wall){
+                    if(collision(obj)){
+
+                        String direction = getDirection(obj);
+                        System.out.println(direction);
+                        switch (direction) {
+                            case "forward":
+                                y -= 20;
+                                break;
+                            case "backward":
+                                y += 20;
+                                break;
+                            case "left":
+                                x += 10;
+                                break;
+                            case "right":                            
+                                x -= 10;
+                                break;
+                            default:
+                                break;
+                        }
+                        velX = 0;
+                        velY = 0;
+                    }
+                }       
+            }
+        }
+    }
+    
+    public String getDirection(GameObject obj){
+        String direction = "none";
+        
+        if(this.velX > 0){
+            // right
+            return "right";
+        }
+        else if(this.velX < 0){
+            // left
+            return "left";
+        }        
+        else if(this.velY > 0){
+            // forward
+            return "forward";
+        }
+        else if(this.velY < 0){
+            // backward
+            return "backward";
+        }
+//        else{
+//            if(this.x > obj.x){
+//                return "right";
+//            }
+//            else if(this.x < obj.x){
+//                return "left";
+//            }
+//            else if(this.y > obj.y){
+//                return "forward";
+//            }
+//            else if(this.y < obj.y){
+//                return "backward";
+//            }
+//        }
+        
+        
+        return direction;
+    }
+    
+    
+    @Override
+    public boolean collision(GameObject obj) {
+        Rectangle thisRect = this.getBounds(),
+                objRect = obj.getBounds();
+        if(thisRect.intersects(objRect)){
+            System.out.println("colliding");
+        }
+        return thisRect.intersects(objRect);
     }
 
     @Override
-    public boolean collision(GameObject obj) {
-        Rectangle thisRect = new Rectangle((int)this.x-tank.getWidth()/4, (int)(this.y-tank.getHeight()/4+20), tank.getWidth()/2, tank.getHeight()/2),
-                objRect = new Rectangle((int)obj.x, (int)obj.y, (int)obj.width, (int)obj.height);
+    public Rectangle getBounds() {
         
-        
-        
-        return thisRect.intersects(objRect);
+        Rectangle r = new Rectangle((int)(this.x-(this.width/2)), (int)(this.y-(this.height/2)) , (int)this.width, (int)this.height);
+        return r;
     }
 
    

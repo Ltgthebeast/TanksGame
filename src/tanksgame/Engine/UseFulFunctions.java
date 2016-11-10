@@ -5,18 +5,25 @@
  */
 package tanksgame.Engine;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import tanksgame.Objects.GameObject;
 
 /**
  *
  * @author LGarceau
  */
 public class UseFulFunctions {
+    
+    public void drawBounds(Graphics2D g, GameObject obj){
+        g.setColor(Color.blue);
+        g.drawRect(obj.getBounds().x, obj.getBounds().y, obj.getBounds().width, obj.getBounds().height);
+    }
     
     public BufferedImage getScaledImage(BufferedImage img, int w, int h){
         

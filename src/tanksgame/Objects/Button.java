@@ -94,5 +94,10 @@ public class Button extends GameObject{
         boolean within = new Rectangle((int)x, (int)y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
         return within;
     }
+
+    @Override
+    public Rectangle getBounds() {
+        return null;
+    }
     
 }
