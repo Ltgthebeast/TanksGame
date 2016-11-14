@@ -28,10 +28,12 @@ public class Player extends GameObject{
     public BufferedImage can = MainGame.funct.getImageFromName("tankCan.png"),
             tank = MainGame.funct.getImageFromName("tank30.png");
     
+    
     public Player(int x, int y, double velX, double velY, ID id, String image) {
         super(x, y, velX, velY, id, image);
     }
 
+    
     @Override
     public void render(Graphics2D g) {
 //        System.out.println("angle|"+angle);
@@ -60,6 +62,7 @@ public class Player extends GameObject{
         
         MainGame.funct.drawBounds(g, this);
 //        g.drawImage(op.filter(can, ), (int) (x-tank.getWidth()/2)+20, (int) y-tank.getHeight()/2, null);
+        
     }
     
      public String getIntersectedWall(){
@@ -83,28 +86,54 @@ public class Player extends GameObject{
     public void tick() {
         x+=velX;
         y+=velY;
-        
+        String temp = "";
         for(int i = 0; i < MainGame.handler.objs.size(); i++){
             GameObject obj = MainGame.handler.objs.get(i);
             if(obj.getBounds() != null){
                 if(obj.id == ID.Wall){
                     if(collision(obj)){
-
-                        String direction = getDirection(obj);
-                        System.out.println(direction);
+//                        CharSequence cs = "abcdefghijklmnopqrstuvwxyz";
+                        char a = 'a';
+                        a++;
+                        CharS
+                        System.out.println(a);
+                        String direction = getDirection();
+                        if(!direction.equals("none")){
+                             temp = getDirection();
+                        }
+                        System.out.println("direction|"+direction);
+                        System.out.println("temp|"+temp);
                         switch (direction) {
                             case "forward":
-                                y -= 20;
+                                y -= 15;
                                 break;
                             case "backward":
-                                y += 20;
+                                y += 15;
                                 break;
                             case "left":
-                                x += 10;
+                                x += 3;
                                 break;
                             case "right":                            
-                                x -= 10;
+                                x -= 3;
                                 break;
+                            case "none":
+                                
+                                switch(temp){
+                                    case "forward":
+                                        y -= 15;
+                                        break;
+                                    case "backward":
+                                        y += 15;
+                                        break;
+                                    case "left":
+                                        x += 3;
+                                        break;
+                                    case "right":                            
+                                        x -= 3;
+                                        break;
+                                    default:
+                                        break;
+                                }
                             default:
                                 break;
                         }
@@ -115,8 +144,9 @@ public class Player extends GameObject{
             }
         }
     }
+        
     
-    public String getDirection(GameObject obj){
+    public String getDirection(){
         String direction = "none";
         
         if(this.velX > 0){
@@ -135,21 +165,8 @@ public class Player extends GameObject{
             // backward
             return "backward";
         }
-//        else{
-//            if(this.x > obj.x){
-//                return "right";
-//            }
-//            else if(this.x < obj.x){
-//                return "left";
-//            }
-//            else if(this.y > obj.y){
-//                return "forward";
-//            }
-//            else if(this.y < obj.y){
-//                return "backward";
-//            }
-//        }
         
+   
         
         return direction;
     }
@@ -160,7 +177,7 @@ public class Player extends GameObject{
         Rectangle thisRect = this.getBounds(),
                 objRect = obj.getBounds();
         if(thisRect.intersects(objRect)){
-            System.out.println("colliding");
+//            System.out.println("colliding");
         }
         return thisRect.intersects(objRect);
     }

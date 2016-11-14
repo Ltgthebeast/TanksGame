@@ -7,6 +7,7 @@ package tanksgame.Engine;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -19,6 +20,10 @@ import tanksgame.Objects.GameObject;
  * @author LGarceau
  */
 public class UseFulFunctions {
+    
+    public void drawRect(Graphics2D g, Rectangle rect){
+        g.drawRect(rect.x, rect.y, rect.width, rect.height);
+    }
     
     public void drawBounds(Graphics2D g, GameObject obj){
         g.setColor(Color.blue);
