@@ -27,7 +27,7 @@ public class Player extends GameObject{
     public double canAngle = 0;
     public BufferedImage can = MainGame.funct.getImageFromName("tankCan.png"),
             tank = MainGame.funct.getImageFromName("tank30.png");
-    
+    public boolean colliding = false;
     
     public Player(int x, int y, double velX, double velY, ID id, String image) {
         super(x, y, velX, velY, id, image);
@@ -86,65 +86,64 @@ public class Player extends GameObject{
     public void tick() {
         x+=velX;
         y+=velY;
-        String temp = "";
+        
         for(int i = 0; i < MainGame.handler.objs.size(); i++){
             GameObject obj = MainGame.handler.objs.get(i);
             if(obj.getBounds() != null){
                 if(obj.id == ID.Wall){
+                    
                     if(collision(obj)){
 //                        CharSequence cs = "abcdefghijklmnopqrstuvwxyz";
-                        char a = 'a';
-                        a++;
-                        CharS
-                        System.out.println(a);
-                        String direction = getDirection();
-                        if(!direction.equals("none")){
-                             temp = getDirection();
-                        }
+                        
+                       String direction = getDirection();
+                        colliding = true;
                         System.out.println("direction|"+direction);
-                        System.out.println("temp|"+temp);
+                        
+                        // adjusts one direction at a time
                         switch (direction) {
-                            case "forward":
-                                y -= 15;
-                                break;
-                            case "backward":
-                                y += 15;
-                                break;
-                            case "left":
-                                x += 3;
-                                break;
-                            case "right":                            
-                                x -= 3;
-                                break;
-                            case "none":
-                                
-                                switch(temp){
-                                    case "forward":
-                                        y -= 15;
-                                        break;
-                                    case "backward":
-                                        y += 15;
-                                        break;
-                                    case "left":
-                                        x += 3;
-                                        break;
-                                    case "right":                            
-                                        x -= 3;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            default:
-                                break;
-                        }
-                        velX = 0;
-                        velY = 0;
+                               case "left":
+                                   setX(x+3);
+                                   checkCollision(obj);
+                                   return;
+                               case "right":
+                                   setX(x-3);
+                                   checkCollision(obj);
+                                   return;
+                               default:
+                                   break; 
+                                   
+                           }
+                       switch(direction){
+                           case "forward":
+                               setY(y-10);
+                               checkCollision(obj);
+                               return;
+                           case "backward":
+                               setY(y+10);
+                               checkCollision(obj);
+                               return;
+                           default:
+                               break;
+                       }       
+                       
                     }
-                }       
-            }
-        }
+
+                    
+                
+                    System.out.println("colliding|"+colliding);
+                    
+                }                  
+            }                
+        }        
     }
         
+    public void checkCollision(GameObject obj){
+        if(!collision(obj)){
+                        colliding = false;
+//                        velX = 0;
+//                        velY = 0;
+                    }  
+    }
     
     public String getDirection(){
         String direction = "none";
@@ -157,7 +156,7 @@ public class Player extends GameObject{
             // left
             return "left";
         }        
-        else if(this.velY > 0){
+        if(this.velY > 0){
             // forward
             return "forward";
         }
@@ -165,9 +164,6 @@ public class Player extends GameObject{
             // backward
             return "backward";
         }
-        
-   
-        
         return direction;
     }
     
@@ -177,7 +173,7 @@ public class Player extends GameObject{
         Rectangle thisRect = this.getBounds(),
                 objRect = obj.getBounds();
         if(thisRect.intersects(objRect)){
-//            System.out.println("colliding");
+            System.out.println("colliding");
         }
         return thisRect.intersects(objRect);
     }

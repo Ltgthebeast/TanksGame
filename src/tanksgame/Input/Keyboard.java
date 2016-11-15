@@ -32,24 +32,28 @@ public class Keyboard extends KeyAdapter{
         for(int i = 0; i < handler.objs.size(); i++){
             GameObject temp = handler.objs.get(i);
             if(temp.getID() == ID.Tank){
-                int code = e.getKeyCode();
-                // set movement
-                
-                if(code == KeyEvent.VK_W){
-                   y = -2;
+                if(!MainGame.player.colliding){
+                    int code = e.getKeyCode();
+                    // set movement
+                    switch (code) {
+                        case KeyEvent.VK_W:
+                            y = -2;
+                            break;
+                        case KeyEvent.VK_S:
+                            y = 2;
+                            break;
+                        case KeyEvent.VK_A:
+                            x = -2;
+                            break;
+                        case KeyEvent.VK_D:
+                            x = 2;
+                            break;
+                        default:
+                            break;
+                    }
+                    temp.setVelX(x);
+                    temp.setVelY(y);
                 }
-                if(code == KeyEvent.VK_S){
-                    y = 2;
-                }
-                if(code == KeyEvent.VK_A){
-                    x = -2;
-                }
-                if(code == KeyEvent.VK_D){
-                    x = 2;
-                }
-                temp.setVelX(x);
-                temp.setVelY(y);
-                
             }
         }
     }
@@ -62,17 +66,21 @@ public class Keyboard extends KeyAdapter{
             
             if(temp.getID() == ID.Tank){
                 
-                if(e.getKeyCode() == KeyEvent.VK_W){
-                    y = 0;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_S){
-                    y = 0;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_A){
-                     x = 0;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_D){
-                    x = 0;
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_W:
+                        y = 0;
+                        break;
+                    case KeyEvent.VK_S:
+                        y = 0;
+                        break;
+                    case KeyEvent.VK_A:
+                        x = 0;
+                        break;
+                    case KeyEvent.VK_D:
+                        x = 0;
+                        break;
+                    default:
+                        break;
                 }
                 temp.setVelX(x);
                 temp.setVelY(y);
