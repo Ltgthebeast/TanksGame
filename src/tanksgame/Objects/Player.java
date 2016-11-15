@@ -95,10 +95,10 @@ public class Player extends GameObject{
                     if(collision(obj)){
 //                        CharSequence cs = "abcdefghijklmnopqrstuvwxyz";
                         
-                       String direction = getDirection();
-                        colliding = true;
-                        System.out.println("direction|"+direction);
+                        String direction = getDirection();
                         
+                        System.out.println("direction|"+direction);
+                        colliding = true;
                         // adjusts one direction at a time
                         switch (direction) {
                                case "left":
@@ -110,10 +110,9 @@ public class Player extends GameObject{
                                    checkCollision(obj);
                                    return;
                                default:
-                                   break; 
-                                   
-                           }
-                       switch(direction){
+                                   break;                                    
+                        }
+                        switch(direction){
                            case "forward":
                                setY(y-10);
                                checkCollision(obj);
@@ -124,12 +123,8 @@ public class Player extends GameObject{
                                return;
                            default:
                                break;
-                       }       
-                       
+                        }
                     }
-
-                    
-                
                     System.out.println("colliding|"+colliding);
                     
                 }                  
@@ -147,22 +142,28 @@ public class Player extends GameObject{
     
     public String getDirection(){
         String direction = "none";
-        
-        if(this.velX > 0){
-            // right
-            return "right";
-        }
-        else if(this.velX < 0){
-            // left
-            return "left";
-        }        
         if(this.velY > 0){
             // forward
             return "forward";
         }
-        else if(this.velY < 0){
+        if(this.velY < 0){
             // backward
             return "backward";
+        }
+        if(this.velX > 0){
+            // right
+            return "right";
+        }
+        if(this.velX < 0){
+            // left
+            return "left";
+        }        
+        
+        if(this.velX == 0){
+            return "velX is 0";
+        }
+        if(this.velY == 0){
+            return "velY is 0";
         }
         return direction;
     }
