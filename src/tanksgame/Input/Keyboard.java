@@ -82,8 +82,8 @@ public class Keyboard extends KeyAdapter{
                     default:
                         break;
                 }
-                temp.setVelX(x);
-                temp.setVelY(y);
+                temp.setVelX(0);
+                temp.setVelY(0);
                 
             }
         }

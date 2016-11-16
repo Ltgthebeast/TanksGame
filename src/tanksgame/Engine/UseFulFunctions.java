@@ -25,6 +25,10 @@ public class UseFulFunctions {
         g.drawRect(rect.x, rect.y, rect.width, rect.height);
     }
     
+    public void fillRect(Graphics2D g, Rectangle rect){
+    	g.fillRect(rect.x, rect.y, rect.width, rect.height);
+    }
+    
     public void drawBounds(Graphics2D g, GameObject obj){
         g.setColor(Color.blue);
         g.drawRect(obj.getBounds().x, obj.getBounds().y, obj.getBounds().width, obj.getBounds().height);
