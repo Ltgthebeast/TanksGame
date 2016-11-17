@@ -6,41 +6,66 @@
 package tanksgame.Objects;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.LinkedList;
+import tanksgame.Engine.MainGame;
 
 /**
  *
  * @author Luke T Garceau
  */
 public class Map extends GameObject{
-    
+
     public LinkedList<VisibleWall> walls = new LinkedList<VisibleWall>();
+    public boolean rendered = false, render = false;
     
     public Map(double x, double y, double width, double height, ID id, String image) {
         super(x, y, width, height, id, image);
     }
     
-    public void addWall(VisibleWall wall){
-        walls.add(wall);
+    public void addWall(int x, int y, int width, int height, String direction){
+        walls.add(new VisibleWall(x, y, width, height, ID.Wall, direction));
     }
-
+    
+    public void addWall(VisibleWall e){
+        walls.add(e);
+    }
+    
+    public void addWallsToHandler(){
+        for(VisibleWall wall: walls){
+            MainGame.handler.add(wall);
+        }
+    }
+    
+    public void removeWallsFromHandler(){
+        for(VisibleWall wall: walls){
+            MainGame.handler.remove(wall);
+        }
+    }
+    
     @Override
     public void render(Graphics2D g) {
-       for(int i = 0; i < walls.size(); i++){
-           walls.get(i).render(g);
-       }
+       // display graphics for map
+       
+        for(int i = 0; i < walls.size(); i++){
+            walls.get(i).render(g);
+        }
+       
     }
 
     @Override
     public void tick() {
-        for(int i = 0; i < walls.size(); i++){
-           walls.get(i).tick();
-       }
+        // update anything like check for a collision
     }
 
     @Override
     public boolean collision(GameObject obj) {
         return false;
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return null;
     }
     
 }

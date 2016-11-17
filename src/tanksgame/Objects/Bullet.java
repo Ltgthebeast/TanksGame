@@ -26,16 +26,16 @@ public class Bullet extends GameObject{
     public void render(Graphics2D g) {
       
         g.rotate(angle, x, y);
-        g.setColor(Color.blue);
-        g.drawLine((int)x, (int)y, (int)x+100, (int)y+100);
-//        g.drawImage(MainGame.funct.getImageFromName("bullet.png"), (int) x, (int) y, null);
+//        g.setColor(Color.BLACK);
+//        g.drawLine((int)x,(int) y,(int)x+MainGame.player.can.getWidth(),(int) y+MainGame.player.can.getHeight());
+        g.drawImage(MainGame.funct.getImageFromName("bullet.png"), (int) x, (int) y, null);
         g.rotate(-angle, x, y);
     }
 
     @Override
     public void tick() {
-//        x += velX;
-//        y += -velY;
+        x += velX;
+        y += -velY;
         if(collision(MainGame.bottom) || collision(MainGame.top) || collision(MainGame.left) || collision(MainGame.right)){
             MainGame.handler.remove(this);
         }
@@ -43,9 +43,15 @@ public class Bullet extends GameObject{
 
     @Override
     public boolean collision(GameObject obj) {
-        Rectangle thisRect = new Rectangle ((int)x,(int) y, (int)width, (int)height),
-                objRect = new Rectangle((int)obj.x,(int) obj.y,(int) obj.width,(int) obj.height);
-        return objRect.intersects(thisRect);
+        
+        return obj.getBounds().intersects(this.getBounds());
     }
+
+    @Override
+    public Rectangle getBounds() {
+        return new Rectangle ((int)x,(int) y, (int)width, (int)height);
+    }
+    
+    
     
 }

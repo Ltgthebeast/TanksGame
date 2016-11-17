@@ -40,8 +40,9 @@ public class Button extends GameObject{
     @Override
     public void render(Graphics2D g) {
        // draw the rectangle but have a hover over function
-      boolean within = new Rectangle((int)x, (int)y+30, width, height).contains(MainGame.mouseX, MainGame.mouseY);
-       
+      boolean within = new Rectangle((int)x, (int)y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
+//        System.out.println("mouseX|"+MainGame.mouseX);
+//        System.out.println("mouseY|"+MainGame.mouseY);
        if(within){
            // hovering over button
            g.setColor(new Color(c.getRed()/2, c.getGreen()/2, c.getBlue()/2));
@@ -92,6 +93,11 @@ public class Button extends GameObject{
     public boolean collision(GameObject obj) {
         boolean within = new Rectangle((int)x, (int)y, width, height).contains(MainGame.mouseX, MainGame.mouseY);
         return within;
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return null;
     }
     
 }

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tanksgame.Objects;
+package tanksgame.Engine;
 
 /**
  *
  * @author LGarceau
  */
-public enum ID {
-    
-    Tank, Enemy, Bullet, Wall, Button, Image, Map
+class BufferedIamge {
     
 }
