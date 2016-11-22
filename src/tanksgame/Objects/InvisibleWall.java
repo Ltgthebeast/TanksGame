@@ -29,14 +29,30 @@ public class InvisibleWall extends GameObject{
         // no graphics for inivisble wall
 //        g.setColor(Color.blue);
 //        g.drawRect((int)x, (int)y, (int)this.width, (int)this.height);
-    
     }
 
     @Override
     public void tick() {
         
                 // move back based on direction
-        
+        String direction = MainGame.player.getIntersectedWall();
+
+        if(direction.equals("bottom")){
+            // move up
+                MainGame.player.setY(MainGame.player.getY()-5);
+        }
+        if(direction.equals("top")){
+            // move down
+            MainGame.player.setY(MainGame.player.getY()+5);
+        }
+        if(direction.equals("left")){
+            // move right
+            MainGame.player.setX(MainGame.player.getX()+5);
+        }
+        if(direction.equals("right")){
+            // move left
+            MainGame.player.setX(MainGame.player.getX()-5);
+        }
     }
 
     
@@ -48,12 +64,6 @@ public class InvisibleWall extends GameObject{
             objRect = obj.getBounds();
         
         return thisRect.intersects(objRect);
-    }
-
-    @Override
-    public Rectangle getBounds(){
-        Rectangle r = new Rectangle((int) this.x, (int) this.y, (int) this.width, (int) this.height);
-        return r;
     }
     
 }
