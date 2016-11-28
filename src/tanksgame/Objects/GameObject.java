@@ -5,7 +5,6 @@
  */
 package tanksgame.Objects;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -50,17 +49,14 @@ public abstract class GameObject {
         this.width = width;
     }
       
-    public abstract Rectangle getBounds();
+    public Rectangle getBounds(){
+        return new Rectangle((int)this.x, (int)this.y-30 , (int)this.width, (int)this.height);
+    }
     
     public ID getID(){
         return id;
     }
 
-    public void drawBounds(Graphics2D g){
-        g.setColor(Color.blue);
-        g.drawRect(this.getBounds().x, this.getBounds().y, this.getBounds().width, this.getBounds().height);
-    }
-    
     public int getX() {
         return (int)x;
     }

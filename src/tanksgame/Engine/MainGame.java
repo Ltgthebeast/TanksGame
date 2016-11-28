@@ -10,6 +10,7 @@ import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -71,6 +72,7 @@ public class MainGame extends Canvas implements Runnable{
         // Visible Walls In Maps
     public static Map map1 = new Map(0, 0, 0, 0, ID.Map, "map1");
         
+        public static VisibleWall wall1 = new VisibleWall(10, 10, 40, 100, ID.Wall, "top");
         
     
     
@@ -87,16 +89,13 @@ public class MainGame extends Canvas implements Runnable{
         handler.add(exit);
         
         // add Invisible Walls
-//        handler.add(top);
-//        handler.add(bottom);
-//        handler.add(left);
-//        handler.add(right);
+        handler.add(top);
+        handler.add(bottom);
+        handler.add(left);
+        handler.add(right);
         
-        // add visible walls to map1
-        map1.addWall(0, 0, (int)WIDTH, 20, "top");
-        map1.addWall(0, 0, 20, (int)HEIGHT, "left");
-        map1.addWall((int)WIDTH-20, 0, 20, (int) HEIGHT, "right");
-        map1.addWall(0, (int) HEIGHT-40, (int)WIDTH, 20, "bottom");
+        // add visible walls to maps 
+        map1.addWall(wall1);
         
     }
     
@@ -168,6 +167,13 @@ public class MainGame extends Canvas implements Runnable{
         SwingUtilities.convertPointFromScreen(mousePos, this);
         mouseX = mousePos.x;
         mouseY = mousePos.y;
+
+        
+            mouseX = funct.map(mouseX, 0, width, -width/2, width/2);
+            mouseY = funct.map(mouseY, 0, height, -height/2, height/2);
+        
+
+
 //        System.out.println("Mouse x: "+mouseX+" Mouse y: "+mouseY);
                
     }
@@ -208,12 +214,8 @@ public class MainGame extends Canvas implements Runnable{
             updatePlayer(g);
             updatePlayer = false;
              // render map based on map count
-            if(mapCount == 1){
-                mapCount++;
-                map1.addWallsToHandler();
-                handler.add(map1);
-            }
-            
+            map1.renderWalls();
+
         }
                
         // render all gameobjects
